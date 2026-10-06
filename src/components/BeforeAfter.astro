@@ -1,0 +1,119 @@
+---
+import SectionHead from './SectionHead.astro';
+
+// Illustrative timelines: label them as such wherever they appear.
+const before = [
+  ['05:10', "Driver can't find your gate. Rings you to ask."],
+  ['05:45', 'Loaded. Nobody checks the product temperature.'],
+  ['06:40', 'Misses the DC slot. Rebooked for 9:00.'],
+  ['09:20', 'Your customer rings to ask where it is.'],
+  ['Thu', "The signed docket still hasn't turned up."],
+];
+const after = [
+  ['05:10', 'At your gate. Knows the dock and who signs.'],
+  ['05:22', 'Unit set at 2°C, product 1.8°C. Written down.'],
+  ['05:30', 'Text to you: loaded, ETA 06:20.'],
+  ['06:20', 'Into the DC slot with ten minutes to spare.'],
+  ['06:33', 'Docket signed. Photo sent when you ask.'],
+];
+const panels = [
+  { key: 'before', label: 'Before', title: 'A new subbie every week.', items: before },
+  { key: 'after', label: 'After', title: 'The same run with TRANS STAR.', items: after },
+];
+---
+
+<section class="sec" id="before-after" aria-labelledby="ba-h">
+  <div class="wrap">
+    <SectionHead no="04" label="Before and after" id="ba-h">
+      Same morning. <em class="hl">Different carrier.</em>
+      <p slot="lead" data-reveal>An illustrative 6:30 DC delivery, run two ways.</p>
+    </SectionHead>
+    <div class="ba">
+      {
+        panels.map((p) => (
+          <article class:list={['panel', p.key, { 'on-navy': p.key === 'after' }]} aria-labelledby={`ba-${p.key}`} data-reveal>
+            <div class="top">
+              <span class="label">{p.label}</span>
+              <span class="tag">Illustrative</span>
+            </div>
+            <h3 id={`ba-${p.key}`}>{p.title}</h3>
+            <ol class="tl">
+              {p.items.map(([t, text]) => (
+                <li>
+                  <span class="t">{t}</span>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ol>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .ba {
+    display: grid;
+    gap: 20px;
+  }
+  .panel {
+    border-radius: var(--radius-card);
+    padding: clamp(24px, 3vw, 40px);
+    min-width: 0;
+  }
+  .before {
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .top .label {
+    color: var(--color-muted);
+  }
+  .after .top .label {
+    color: var(--color-inv-muted);
+  }
+  .after .tag {
+    background: var(--color-navy-3);
+    color: var(--color-inv-ink);
+  }
+  h3 {
+    font-size: clamp(23px, 2.1vw, 30px);
+    letter-spacing: -0.03em;
+    margin: 12px 0 22px;
+  }
+  .tl {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tl li {
+    display: grid;
+    grid-template-columns: 68px 1fr;
+    gap: 12px;
+    padding-block: 13px;
+    border-top: 1px solid var(--color-line);
+    font-size: 16px;
+  }
+  .after .tl li {
+    border-color: var(--color-inv-line);
+  }
+  .t {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-muted);
+  }
+  .after .t {
+    color: var(--color-inv-muted);
+  }
+  @media (min-width: 960px) {
+    .ba {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

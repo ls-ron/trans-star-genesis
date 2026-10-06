@@ -1,0 +1,140 @@
+---
+import SectionHead from './SectionHead.astro';
+
+const rows = [
+  {
+    why: 'A different driver every week, and every one of them learns your dock from scratch.',
+    title: 'The same faces at your dock.',
+    what: "We're a crew of four. Whoever turns up has been to your site before, knows where to back in, and knows who signs.",
+  },
+  {
+    why: "Product goes out warm or a door's left open, and nobody can say where the temperature went.",
+    title: 'Temperatures checked and written down.',
+    what: "We check the unit's set point and the product temperature at every pick-up and drop, and write them down. If you need proof, we send a photo of the reading.",
+  },
+  {
+    why: "You find out a delivery's late when your customer rings to complain.",
+    title: 'You hear it from us first.',
+    what: "If a run is going to miss its window, we tell you before it does, with a new ETA. You're never the last to know.",
+  },
+  {
+    why: 'The paperwork turns up days later, if it turns up at all.',
+    title: 'Proof when you ask for it.',
+    what: 'Signed dockets and temperature photos sent the same day.',
+  },
+];
+---
+
+<section class="sec" id="approach" aria-labelledby="approach-h">
+  <div class="wrap">
+    <SectionHead no="02" label="Why runs go wrong" id="approach-h">
+      Most runs don't go wrong on the road. <em class="hl">They go wrong at the handover.</em>
+    </SectionHead>
+
+    <div class="cols" aria-hidden="true" data-reveal>
+      <span></span>
+      <h3>Why runs go wrong</h3>
+      <h3 class="hl">What we do</h3>
+    </div>
+    <ol class="table">
+      {
+        rows.map((r, i) => (
+          <li class="row" data-reveal>
+            <span class="n" aria-hidden="true">{i + 1}</span>
+            <div class="body">
+              <div class="why">
+                <span class="mlabel">Why runs go wrong</span>
+                <p>{r.why}</p>
+              </div>
+              <div class="what">
+                <span class="mlabel hl">What we do</span>
+                <h3>{r.title}</h3>
+                <p>{r.what}</p>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .cols {
+    display: none;
+  }
+  .table {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 2px solid var(--color-ink);
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 10px 14px;
+    padding-block: 28px;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .n {
+    color: var(--color-navy-2);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .body {
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+  }
+  .mlabel {
+    display: block;
+    margin-bottom: 6px;
+    font: 600 11px/1.3 var(--font-sans);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .mlabel.hl {
+    color: var(--color-red);
+  }
+  .why p {
+    color: var(--color-muted);
+    font-size: 18px;
+    line-height: 1.45;
+  }
+  .what h3 {
+    font-size: 22px;
+    letter-spacing: -0.025em;
+    margin-bottom: 8px;
+  }
+  .what p {
+    color: var(--color-ink-2);
+    font-size: 16.5px;
+  }
+  @media (min-width: 960px) {
+    .cols {
+      display: grid;
+      grid-template-columns: 64px 1fr 1fr;
+      gap: 32px;
+      padding-bottom: 18px;
+    }
+    .cols h3 {
+      font-size: 28px;
+      letter-spacing: -0.035em;
+    }
+    .row {
+      grid-template-columns: 64px 1fr;
+      column-gap: 32px;
+      padding-block: 32px;
+    }
+    .body {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .mlabel {
+      display: none;
+    }
+  }
+</style>

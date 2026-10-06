@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Problem from '../components/Problem.astro';
+import WhyWhat from '../components/WhyWhat.astro';
+import Record from '../components/Record.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
+import HowWeWork from '../components/HowWeWork.astro';
+import Team from '../components/Team.astro';
+import Coverage from '../components/Coverage.astro';
+import Quote from '../components/Quote.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+---
+
+<Base
+  title="TRANS STAR | Chilled and frozen transport, Auckland"
+  description="Small Auckland cold chain carrier. 20+ years in logistics, two trucks, chilled and frozen in the same load, Sunday to Friday. First delivery free for new customers."
+>
+  <a class="skip sr-only-focusable" href="#main">Skip to content</a>
+  <Header />
+  <main id="main">
+    <Hero />
+    <Problem />
+    <WhyWhat />
+    <Record />
+    <BeforeAfter />
+    <HowWeWork />
+    <Team />
+    <Coverage />
+    <Quote />
+  </main>
+  <Footer />
+  <MobileBar />
+</Base>
+
+<style>
+  .skip {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 50;
+    padding: 10px 14px;
+    border-radius: var(--radius-btn);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+</style>

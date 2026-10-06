@@ -1,0 +1,53 @@
+---
+// Phones only: keeps the CTA pair within thumb reach once the hero buttons have scrolled away.
+import { site } from '../data/site';
+---
+
+<div class="mbar" data-mbar>
+  <a class="btn btn-call" href={site.phone.href} aria-label={`Call ${site.phone.display}`}>Call</a>
+  <a class="btn btn-quote" href="#quote">Request a quote</a>
+</div>
+
+<script>
+  // Hide the bar while the hero CTAs or the quote form are on screen. Without JS it simply stays visible.
+  const bar = document.querySelector<HTMLElement>('[data-mbar]');
+  const targets = ['#hero-cta', '#quote form'].map((s) => document.querySelector(s)).filter(Boolean) as Element[];
+  if (bar && 'IntersectionObserver' in window && targets.length) {
+    const visible = new Set<Element>();
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) e.isIntersecting ? visible.add(e.target) : visible.delete(e.target);
+      const on = visible.size === 0;
+      bar.toggleAttribute('hidden', !on);
+      document.documentElement.dataset.mbar = on ? 'on' : 'off';
+    });
+    targets.forEach((t) => io.observe(t));
+  }
+</script>
+
+<style>
+  .mbar {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 40;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: var(--color-paper);
+    border-top: 1px solid var(--color-line);
+  }
+  .mbar[hidden] {
+    display: none;
+  }
+  .mbar .btn {
+    height: 48px;
+    padding-inline: 10px;
+    font-size: 15px;
+  }
+  @media (min-width: 960px) {
+    .mbar {
+      display: none;
+    }
+  }
+</style>

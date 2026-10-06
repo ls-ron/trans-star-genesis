@@ -1,0 +1,103 @@
+---
+import Wordmark from '../../assets/logo-wordmark.svg';
+import { site } from '../data/site';
+
+const links = [
+  { href: '#problem', label: 'The problem' },
+  { href: '#how', label: 'How we work' },
+  { href: '#coverage', label: 'Coverage' },
+  { href: '#faq', label: 'FAQ' },
+];
+---
+
+<header class="on-navy header">
+  <div class="wrap header-in">
+    <a href="#" class="brand" aria-label={`${site.name}, back to top`}>
+      <Wordmark class="h-4 w-auto max-[399px]:h-3.5 lg:h-5" aria-hidden="true" />
+    </a>
+    <nav aria-label="Sections" class="links">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+    <div class="ctas">
+      <a class="btn btn-call call" href={site.phone.href}>Call {site.phone.display}</a>
+      <a class="btn btn-quote" href="#quote">Request a quote</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    border-bottom: 1px solid var(--color-inv-line);
+  }
+  .header-in {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    height: var(--nav-h);
+  }
+  .brand {
+    color: var(--color-inv-ink);
+    display: inline-flex;
+    padding-block: 14px;
+  }
+  .links {
+    display: none;
+    gap: 28px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .links a {
+    text-decoration: none;
+    padding-block: 12px;
+  }
+  .links a:hover {
+    color: var(--color-inv-muted);
+  }
+  .ctas {
+    display: flex;
+    gap: 10px;
+  }
+  .ctas .btn {
+    height: 44px;
+    padding-inline: 16px;
+    font-size: 15px;
+  }
+  .call {
+    display: none;
+  }
+  /* Small phones: tighten, then drop the header CTA (the hero pair and bottom bar cover it) */
+  @media (max-width: 399px) {
+    .header-in {
+      gap: 12px;
+    }
+    .ctas .btn {
+      padding-inline: 12px;
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 349px) {
+    .ctas {
+      display: none;
+    }
+  }
+  @media (min-width: 640px) {
+    .ctas .call {
+      display: inline-flex;
+    }
+  }
+  /* phones: once the bottom bar is showing, it carries the CTAs */
+  @media (max-width: 959px) {
+    :global(html[data-mbar='on']) .ctas {
+      visibility: hidden;
+    }
+  }
+  @media (min-width: 1080px) {
+    .links {
+      display: flex;
+    }
+  }
+</style>

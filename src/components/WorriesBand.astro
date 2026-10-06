@@ -1,0 +1,190 @@
+---
+// Anonymous worries from shippers and operators. Never attributed, never quoted, never testimonials.
+// Each row is the set twice (copy hidden from screen readers) so the sideways loop is seamless.
+const rows: { tone: 'paper' | 'navy'; reverse?: boolean; seconds: number; items: string[] }[] = [
+  {
+    tone: 'paper',
+    seconds: 80,
+    items: [
+      'The load arrived warm and nobody can say why.',
+      'I found out it was late from my own customer.',
+      'Another missed delivery slot.',
+      'The temperature records turn up a week later, if at all.',
+      'Rejected at the DC for temperature. Again.',
+    ],
+  },
+  {
+    tone: 'navy',
+    reverse: true,
+    seconds: 92,
+    items: [
+      "A new driver every week who doesn't know our dock.",
+      "I need a subbie I don't have to check on.",
+      "Peak's coming and I'm a truck short.",
+      'Nobody answers the phone when a run slips.',
+    ],
+  },
+  {
+    tone: 'paper',
+    seconds: 72,
+    items: [
+      'The paperwork takes longer than the run.',
+      'Who signed for it? Nobody knows.',
+      'Every driver unloads it differently.',
+      "I can't take that contract without another truck.",
+    ],
+  },
+];
+---
+
+<div class="worries" data-worries>
+  <div class="wrap head">
+    <p class="label" id="worries-h">Sound familiar?</p>
+    <button type="button" class="toggle" data-worries-toggle hidden>Pause</button>
+  </div>
+  <div class="rows" role="group" aria-labelledby="worries-h" data-reveal>
+    <p class="sr-only">Common worries in cold freight, written as anonymous thoughts.</p>
+    {
+      rows.map((row, i) => (
+        <div class:list={['row', row.tone, { rev: row.reverse }]} style={`--dur: ${row.seconds}s; --offset: ${-0.17 * (i + 1)}`}>
+          <ul class="track">
+            {row.items.map((t) => (
+              <li class="chip">{t}</li>
+            ))}
+            {row.items.map((t) => (
+              <li class="chip dup" aria-hidden="true">
+                {t}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  // A pause control for the moving band (WCAG 2.2.2). Hidden when motion is reduced: nothing moves then.
+  const band = document.querySelector<HTMLElement>('[data-worries]');
+  const toggle = band?.querySelector<HTMLButtonElement>('[data-worries-toggle]');
+  if (band && toggle && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    toggle.hidden = false;
+    toggle.addEventListener('click', () => {
+      const paused = band.toggleAttribute('data-paused');
+      toggle.textContent = paused ? 'Play' : 'Pause';
+    });
+  }
+</script>
+
+<style>
+  .worries {
+    margin-top: clamp(40px, 5vw, 56px);
+  }
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+    color: var(--color-muted);
+  }
+  .toggle {
+    min-height: 44px;
+    padding-inline: 4px;
+    font: 600 12px/1 var(--font-sans);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+  .toggle:hover {
+    color: var(--color-ink);
+  }
+
+  /* Full-bleed rows, hard-cropped at the screen edge (no fade masks) */
+  .rows {
+    display: grid;
+    gap: 12px;
+  }
+  .row {
+    overflow: hidden;
+  }
+  .track {
+    display: flex;
+    gap: 12px;
+    width: max-content;
+    margin: 0;
+    padding: 0 12px 0 0;
+    list-style: none;
+    animation: drift var(--dur) linear infinite;
+    animation-delay: calc(var(--dur) * var(--offset));
+  }
+  .rev .track {
+    animation-direction: reverse;
+  }
+  .worries:hover .track,
+  .worries[data-paused] .track {
+    animation-play-state: paused;
+  }
+  @keyframes drift {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .chip {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    border: 1.5px solid var(--color-ink);
+    background: var(--color-card);
+    border-radius: 999px;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: clamp(15px, 1.25vw, 18px);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .navy .chip {
+    background: var(--color-navy);
+    border-color: var(--color-navy);
+    color: var(--color-inv-ink);
+  }
+
+  /* Reduced motion: nothing moves. Phones swipe each row; wider screens wrap the chips. */
+  @media (prefers-reduced-motion: reduce) {
+    .track {
+      animation: none;
+      padding-inline: var(--pad);
+    }
+    .dup {
+      display: none;
+    }
+    .row {
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+    }
+    .row::-webkit-scrollbar {
+      display: none;
+    }
+    .chip {
+      scroll-snap-align: start;
+      scroll-margin-inline: var(--pad);
+    }
+    @media (min-width: 960px) {
+      .row {
+        overflow: visible;
+        max-width: var(--max);
+        margin-inline: auto;
+      }
+      .track {
+        flex-wrap: wrap;
+        width: auto;
+      }
+      .chip {
+        white-space: normal;
+      }
+    }
+  }
+</style>

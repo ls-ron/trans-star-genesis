@@ -1,0 +1,117 @@
+---
+import '@fontsource-variable/schibsted-grotesk';
+import '../styles/global.css';
+import fontLatin from '@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2?url';
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+
+const base = Astro.site ?? new URL(site.url);
+const canonical = new URL(Astro.url.pathname, base).href;
+
+// On Netlify, URL is the site's primary address. Until that is the real domain (e.g. while it is
+// still *.netlify.app), ask search engines not to index. Local builds are unaffected.
+const deployUrl = process.env.URL;
+const noindex = Boolean(deployUrl) && new URL(deployUrl!).hostname !== base.hostname;
+
+// Share image: og-share.jpg, else a crop of the hero photo, else the wordmark placeholder.
+const photos = import.meta.glob<{ default: ImageMetadata }>(
+  '/assets/photos/{og-share,hero-truck-dawn}.{jpg,jpeg,JPG,JPEG}',
+  { eager: true },
+);
+const pick = (name: string) =>
+  Object.entries(photos).find(([f]) => f.split('/').pop()?.replace(/\.jpe?g$/i, '') === name)?.[1].default;
+const shot = pick('og-share') ?? pick('hero-truck-dawn');
+const ogPath = shot
+  ? (await getImage({ src: shot, width: 1200, height: 630, fit: 'cover', format: 'jpg' })).src
+  : '/og-image.png';
+const ogImage = new URL(ogPath, base).href;
+
+// Structured data: only facts the owner has confirmed (see CLAUDE.md).
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: site.legalName,
+  alternateName: site.name,
+  description,
+  url: base.href,
+  telephone: '+64220751526',
+  email: site.email,
+  logo: new URL('/apple-touch-icon.png', base).href,
+  image: ogImage,
+  address: { '@type': 'PostalAddress', addressRegion: 'Auckland', addressCountry: 'NZ' },
+  areaServed: { '@type': 'AdministrativeArea', name: 'Auckland Region' },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '00:00',
+    closes: '23:59',
+  },
+};
+---
+
+<!doctype html>
+<html lang="en-NZ">
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="preload" href={fontLatin} as="font" type="font/woff2" crossorigin />
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <meta name="theme-color" content="#1d3a66" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_NZ" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name} logo`} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(business)} />
+  </head>
+  <body>
+    <slot />
+    <script>
+      // Reveal [data-reveal] blocks as they enter the viewport. Blocks entering together are staggered.
+      const els = [...document.querySelectorAll<HTMLElement>('[data-reveal]')];
+      const show = (el: HTMLElement) => el.classList.add('in');
+      if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach(show);
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries
+              .filter((e) => e.isIntersecting)
+              .map((e) => e.target as HTMLElement)
+              .forEach((el, i) => {
+                el.style.setProperty('--d', String(Math.min(i, 5)));
+                show(el);
+                io.unobserve(el);
+              });
+          },
+          { rootMargin: '0px 0px -8% 0px' },
+        );
+        els.forEach((el) => io.observe(el));
+      }
+    </script>
+  </body>
+</html>

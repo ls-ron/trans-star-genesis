@@ -1,0 +1,340 @@
+---
+import { site } from '../data/site';
+
+const faqs = [
+  {
+    q: "What's included in the free first delivery?",
+    a: "One delivery for each new business, at no charge. If the job needs a return trip or a second load, that part is billed. Urgent loads can sometimes be the first delivery. We'll sort that out on the call.",
+  },
+  {
+    q: 'How do you record temperatures?',
+    a: "By hand. We check the unit's set point and the product temperature at every pick-up and drop and write them down. If you need proof, we'll send a photo of the reading the same day.",
+  },
+  { q: 'Where do you go?', a: 'Anywhere in the Auckland region, Sunday to Friday, at any time of day.' },
+  { q: 'Is there a minimum?', a: 'No. One pallet or a full truck. We prefer regular runs, booked at least 48 hours ahead.' },
+  { q: 'Are you insured?', placeholder: 'cover type and amount, confirmed with your insurer before launch' },
+  { q: 'Do prices include GST?', a: 'No. All prices are quoted excluding GST.' },
+];
+---
+
+<section class="sec" id="quote" aria-labelledby="quote-h">
+  <div class="wrap contact">
+    <div data-reveal>
+      <span class="label"><span class="no">08</span> · Get a quote</span>
+      <h2 id="quote-h">Get a quote. <em class="hl">Or just ring.</em></h2>
+      <a class="bignum" href={site.phone.href}>{site.phone.display}</a>
+      <p class="sub">
+        We'll call you back within one business day. Prefer email? <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+
+      <!-- Netlify Forms: detected at deploy from the static HTML. Submissions: Netlify → Forms → quote. -->
+      <form
+        class="form"
+        name="quote"
+        method="post"
+        data-netlify="true"
+        netlify-honeypot="company-website"
+        data-quote-form
+        novalidate
+      >
+        <input type="hidden" name="form-name" value="quote" />
+        <p class="trap" aria-hidden="true">
+          <label>Leave this empty <input name="company-website" tabindex="-1" autocomplete="off" /></label>
+        </p>
+        <div class="grid">
+          <div class="fld">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="fld">
+            <label for="f-company">Company</label>
+            <input id="f-company" name="company" type="text" autocomplete="organization" required />
+          </div>
+          <div class="fld full">
+            <label for="f-contact">Phone or email</label>
+            <input id="f-contact" name="contact" type="text" autocomplete="tel" required />
+          </div>
+          <div class="fld full">
+            <label for="f-what">What do you ship?</label>
+            <input id="f-what" name="what" type="text" placeholder="e.g. dairy, meat, frozen desserts" />
+          </div>
+          <fieldset class="fld full">
+            <legend>Chilled or frozen?</legend>
+            <div class="choice">
+              <label><input type="radio" name="temperature" value="chilled" /><span>Chilled</span></label>
+              <label><input type="radio" name="temperature" value="frozen" /><span>Frozen</span></label>
+              <label><input type="radio" name="temperature" value="both" /><span>Both</span></label>
+            </div>
+          </fieldset>
+          <div class="fld">
+            <label for="f-areas">Pick-up and drop-off areas</label>
+            <input id="f-areas" name="areas" type="text" placeholder="e.g. East Tāmaki to Wiri" />
+          </div>
+          <div class="fld">
+            <label for="f-often">How often?</label>
+            <select id="f-often" name="frequency">
+              <option value="">Choose…</option>
+              <option>One-off</option>
+              <option>Weekly</option>
+              <option>A few times a week</option>
+              <option>Daily</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="foot">
+          <button class="btn btn-quote" type="submit" data-submit>Request a quote</button>
+          <p>Your first delivery is free.</p>
+        </div>
+        <p class="msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <div class="faq" id="faq" data-reveal>
+      <h2 class="label faq-h">Questions</h2>
+      {
+        faqs.map((f, i) => (
+          <details open={i === 0}>
+            <summary>
+              {f.q}
+              <span class="pm" aria-hidden="true">+</span>
+            </summary>
+            <p>{f.a ?? <span class="ph-tok">[PLACEHOLDER: {f.placeholder}]</span>}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  // Sends the quote form to Netlify Forms without leaving the page.
+  // Without JS the browser posts normally and Netlify shows its own thank-you page.
+  const form = document.querySelector<HTMLFormElement>('form[data-quote-form]');
+  const msg = form?.querySelector<HTMLElement>('.msg');
+  const button = form?.querySelector<HTMLButtonElement>('[data-submit]');
+
+  const say = (state: 'error' | 'sent' | 'sending', text: string) => {
+    if (!msg) return;
+    msg.dataset.state = state;
+    msg.textContent = text;
+  };
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      say('error', 'Please add your name, company and a phone number or email so we can get back to you.');
+      form.querySelector<HTMLInputElement>(':invalid')?.focus();
+      return;
+    }
+    if (import.meta.env.DEV) {
+      say('error', 'Dev server: the form only sends on Netlify. Nothing was submitted.');
+      return;
+    }
+    if (button) button.disabled = true;
+    say('sending', 'Sending…');
+    try {
+      const body = new URLSearchParams(new FormData(form) as unknown as Record<string, string>).toString();
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset();
+      say('sent', "Thanks. We'll call you back within one business day.");
+    } catch {
+      say('error', "That didn't send. Please call 022 075 1526 or email trans_starnz@yahoo.co.nz.");
+    } finally {
+      if (button) button.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  .contact {
+    display: grid;
+    gap: 64px;
+  }
+  h2:not(.label) {
+    margin-top: 22px;
+    font-size: clamp(44px, 5.6vw, 84px);
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+  }
+  .bignum {
+    display: inline-block;
+    margin-top: 14px;
+    padding-block: 4px;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-navy);
+  }
+  .bignum:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--color-red);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.14em;
+  }
+  .sub {
+    margin-top: 8px;
+    max-width: 52ch;
+    color: var(--color-muted);
+  }
+  .sub a {
+    color: var(--color-ink);
+    overflow-wrap: anywhere;
+  }
+
+  .form {
+    margin-top: 36px;
+    display: grid;
+    gap: 18px;
+  }
+  .grid {
+    display: grid;
+    gap: 18px;
+  }
+  .fld {
+    display: grid;
+    gap: 7px;
+    min-width: 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .fld > label,
+  legend {
+    padding: 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  input[type='text'],
+  select {
+    width: 100%;
+    height: 52px;
+    padding-inline: 16px;
+    border: 1px solid var(--color-line-2);
+    border-radius: var(--radius-btn);
+    background: var(--color-card);
+    font: 400 17px/1.3 var(--font-sans);
+    color: var(--color-ink);
+  }
+  input::placeholder {
+    color: #6b6d73;
+  }
+  .choice {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .choice label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    border: 1px solid var(--color-line-2);
+    border-radius: var(--radius-btn);
+    background: var(--color-card);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .choice input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .choice label:has(input:checked) {
+    background: var(--color-navy);
+    border-color: var(--color-navy);
+    color: var(--color-inv-ink);
+  }
+  .choice label:has(input:focus-visible) {
+    outline: 3px solid var(--color-navy-2);
+    outline-offset: 2px;
+  }
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 20px;
+  }
+  .foot p {
+    font-size: 14.5px;
+    color: var(--color-muted);
+  }
+  .msg {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-navy);
+  }
+  .msg[data-state='error'] {
+    color: var(--color-ph-ink);
+  }
+  .msg[data-state='sent'] {
+    color: var(--color-ok);
+  }
+  .trap {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .faq-h {
+    display: block;
+    margin-bottom: 14px;
+    color: var(--color-muted);
+  }
+  details {
+    border-top: 1px solid var(--color-line);
+  }
+  details:last-child {
+    border-bottom: 1px solid var(--color-line);
+  }
+  summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 19px 0;
+    font-size: 17.5px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    list-style: none;
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  .pm {
+    flex: 0 0 auto;
+    font-size: 22px;
+    line-height: 1;
+  }
+  details[open] .pm {
+    color: var(--color-red);
+    transform: rotate(45deg);
+  }
+  details p {
+    max-width: 54ch;
+    padding-bottom: 20px;
+    font-size: 16px;
+    color: var(--color-muted);
+  }
+  @media (min-width: 560px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .full {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (min-width: 1024px) {
+    .contact {
+      grid-template-columns: 7fr 5fr;
+      gap: 80px;
+    }
+  }
+</style>
