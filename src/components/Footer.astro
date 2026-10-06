@@ -1,0 +1,46 @@
+---
+import Wordmark from '../../assets/logo-wordmark.svg';
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="on-navy footer">
+  <div class="wrap row">
+    <Wordmark class="h-4 w-auto" role="img" aria-label={site.name} />
+    <p>
+      <a href={site.phone.href}>{site.phone.display}</a> · <a href={`mailto:${site.email}`}>{site.email}</a> · {site.region}
+    </p>
+    <p>Examples on this site are illustrative. Prices excl. GST. © {year} {site.legalName}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-block: 32px calc(32px + 76px);
+    font-size: 14px;
+    color: var(--color-inv-muted);
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 32px;
+  }
+  .row :global(svg) {
+    color: var(--color-inv-ink);
+  }
+  a {
+    color: var(--color-inv-ink);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  @media (min-width: 960px) {
+    .footer {
+      padding-bottom: 32px;
+    }
+  }
+</style>

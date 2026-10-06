@@ -1,0 +1,98 @@
+---
+import SectionHead from './SectionHead.astro';
+import PhotoSlot from './PhotoSlot.astro';
+
+const facts = [
+  { label: 'Area', value: 'The whole Auckland region' },
+  { label: 'Days', value: 'Sunday to Friday', note: 'No Saturday runs for now.' },
+  { label: 'Hours', value: 'Any time of day', note: 'Early starts and late finishes are normal for us.' },
+  {
+    label: 'Temperature',
+    value: 'Chilled and frozen, in the same load if needed',
+    note: 'Set points from 2°C down to −18°C',
+  },
+  { label: 'Trucks', value: 'UD, 14 pallets · Mitsubishi, 15 pallets' },
+  { label: 'Notice', value: 'At least 48 hours for regular runs', note: "Urgent load? Call and we'll tell you straight." },
+];
+---
+
+<section class="sec on-navy" id="coverage" aria-labelledby="cov-h">
+  <div class="wrap">
+    <SectionHead no="07" label="Coverage" id="cov-h">
+      All of Auckland. <em class="hl">Any hour, six days a week.</em>
+    </SectionHead>
+    <div class="cov">
+      <dl class="facts">
+        {
+          facts.map((f) => (
+            <div class="fact">
+              <dt>{f.label}</dt>
+              <dd>
+                {f.value}
+                {f.note && <small>{f.note}</small>}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+      <PhotoSlot
+        name="coverage-road"
+        ratio="4/5"
+        brief="One of the trucks on an Auckland motorway or arterial road, early morning, three-quarter view from the roadside."
+        alt="A TRANS STAR truck on an Auckland road in the early morning"
+        sizes="(min-width: 960px) 36vw, 100vw"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .cov {
+    display: grid;
+    gap: 32px;
+  }
+  .facts {
+    margin: 0;
+    border-top: 2px solid var(--color-inv-ink);
+  }
+  .fact {
+    display: grid;
+    gap: 4px 24px;
+    padding-block: 18px;
+    border-bottom: 1px solid var(--color-inv-line);
+  }
+  dt {
+    padding-top: 5px;
+    font: 600 11.5px/1.3 var(--font-sans);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-inv-muted);
+  }
+  dd {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+  }
+  small {
+    display: block;
+    margin-top: 4px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-inv-muted);
+  }
+  @media (min-width: 760px) {
+    .fact {
+      grid-template-columns: 200px 1fr;
+    }
+  }
+  @media (min-width: 960px) {
+    .cov {
+      grid-template-columns: 7fr 5fr;
+      gap: 56px;
+      align-items: start;
+    }
+  }
+</style>

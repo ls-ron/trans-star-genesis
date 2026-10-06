@@ -41,6 +41,8 @@ npm run logo -- <Archivo-Expanded-ExtraBold.ttf>   # rebuild logo set (see scrip
 - NZ English. Prices excl. GST. Plain-spoken, steady, a little dry.
 - Never invent statistics, clients, testimonials, certifications, insurance details, fleet specs or awards.
   Unknown facts go in as `[PLACEHOLDER: ...]` and are listed at the end of every pass.
+  Owner wants insurance, form service, photos and domain kept as placeholders as long as possible;
+  tell the owner as soon as any of them blocks progress.
 - Never name the principal contractor (Hall's) or use its branding. Say "a major NZ cold chain operator".
 - No superlatives (longest-serving, best, #1) unless the owner confirms them.
 - Worries in the scrolling band are anonymous thoughts: no names, no quote marks, never testimonials.
@@ -59,6 +61,9 @@ npm run logo -- <Archivo-Expanded-ExtraBold.ttf>   # rebuild logo set (see scrip
 - First delivery free, one per new business. Return trips or a second load are billed.
   Urgent loads can sometimes be the first delivery, decided on the call.
 - Quote requests: call back within one business day.
+- Promises the owner confirmed: "same drivers / same faces at your dock", "you hear it from us first".
+- Crew are happy to be named on the site.
+- Logo (star + Archivo Expanded wordmark) is approved. Keep it.
 - Phone 022 075 1526 (tel:+64220751526). Email trans_starnz@yahoo.co.nz. Domain (not bought yet): transstar.co.nz.
 
 ## Quality bar

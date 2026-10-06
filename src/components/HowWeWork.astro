@@ -1,0 +1,157 @@
+---
+import SectionHead from './SectionHead.astro';
+import CtaPair from './CtaPair.astro';
+
+const steps = [
+  {
+    n: '01',
+    tag: 'Free',
+    free: true,
+    title: 'A quick call',
+    body: "Tell us what you ship, where it's going, how often, and whether it's chilled, frozen or both. We'll tell you straight if we're the right fit. Got an urgent load? Ask, and we'll see if it can be your first.",
+  },
+  {
+    n: '02',
+    tag: 'Free',
+    free: true,
+    title: 'Your first delivery',
+    body: 'We do one real delivery at no charge, one per new business. You see how we load, check temperatures and keep you posted. If it needs a return trip or a second load, that part is billed.',
+  },
+  {
+    n: '03',
+    tag: 'Ongoing',
+    free: false,
+    title: 'Regular runs',
+    body: "If you're happy, we set up regular runs on rates agreed up front. We just need at least 48 hours' notice before each one. Prices excl. GST.",
+  },
+];
+---
+
+<section class="sec on-navy" id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <SectionHead no="05" label="How we work" id="how-h">
+      Three steps. <em class="hl">Your first delivery is free.</em>
+      <p slot="lead">
+        We're a small business. Giving away a delivery isn't cheap for us. We do it because once you've seen one run
+        done properly, you won't want to go back.
+      </p>
+    </SectionHead>
+
+    <ol class="steps">
+      {
+        steps.map((s) => (
+          <li class="step">
+            <div class="step-n">
+              <span class="num">{s.n}</span>
+              <span class:list={['tag', { 'tag-free': s.free }]}>{s.tag}</span>
+            </div>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <!-- Runway (Hemut idea): free until regular runs start -->
+    <div class="runway">
+      <p class="pay-here">You don't pay until here.</p>
+      <span class="seg s1" aria-hidden="true"></span>
+      <span class="seg s2" aria-hidden="true"></span>
+      <span class="seg s3 paid" aria-hidden="true"></span>
+      <p class="seg-l l1"><b>Call</b>Free</p>
+      <p class="seg-l l2"><b>First delivery</b>Free</p>
+      <p class="seg-l l3"><b>Regular runs</b>Billed, excl. GST</p>
+    </div>
+
+    <CtaPair class="cta" />
+  </div>
+</section>
+
+<style>
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 36px;
+  }
+  .step {
+    border-top: 2px solid var(--color-inv-ink);
+    padding-top: 20px;
+  }
+  .step-n {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .num {
+    font-size: 46px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+  }
+  h3 {
+    font-size: clamp(24px, 2.1vw, 30px);
+    letter-spacing: -0.03em;
+    margin: 22px 0 10px;
+  }
+  .step p {
+    color: var(--color-inv-muted);
+    font-size: 16.5px;
+  }
+
+  .runway {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .pay-here {
+    grid-column: 3;
+    grid-row: 1;
+    margin-bottom: 10px;
+    padding-left: 14px;
+    border-left: 2px solid var(--color-red);
+    font-weight: 700;
+    font-size: clamp(15px, 1.4vw, 18px);
+    letter-spacing: -0.01em;
+  }
+  .seg {
+    grid-row: 2;
+    height: 12px;
+    border-radius: 999px;
+    border: 1px solid var(--color-inv-line-2);
+  }
+  .seg.paid {
+    background: var(--color-inv-ink);
+    border-color: var(--color-inv-ink);
+  }
+  .s1, .l1 { grid-column: 1; }
+  .s2, .l2 { grid-column: 2; }
+  .s3, .l3 { grid-column: 3; }
+  .seg-l {
+    grid-row: 3;
+    margin-top: 10px;
+    font-size: 13.5px;
+    line-height: 1.35;
+    color: var(--color-inv-muted);
+  }
+  .seg-l b {
+    display: block;
+    color: var(--color-inv-ink);
+  }
+  .runway + :global(.cta) {
+    margin-top: 48px;
+  }
+  @media (min-width: 960px) {
+    .steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 32px;
+    }
+    /* line the runway segments up under their steps */
+    .runway {
+      column-gap: 32px;
+    }
+  }
+</style>

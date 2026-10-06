@@ -58,9 +58,10 @@ Headings use `text-wrap: balance`; paragraphs `text-wrap: pretty`; numbers in co
 
 `Request a quote` (red) and `Call 022 075 1526` (navy on paper, paper on navy).
 Same height 52px (44px in the header), 16px / 600, radius 10. On phones they stack full width.
-A sticky bottom bar on phones holds Call | Request a quote in equal halves.
+A sticky bottom bar on phones holds Call | Request a quote in equal halves. It shows only while neither the hero
+buttons nor the quote form are on screen, and the header CTA hides while it shows, so one pair is visible at a time.
 
-## Logo (placeholder)
+## Logo
 
 Original five-point star, 10 vertices, inner radius 0.40 of outer, drawn from the proportions of the
 NZ flag stars in `assets/nz-stars-logo-for-star.jpg`. A single star, not the Southern Cross arrangement.
@@ -73,7 +74,7 @@ Wordmark: star + "TRANS STAR" in Archivo Expanded ExtraBold, outlined to paths.
 | `assets/logo-wordmark-on-navy.svg` / `-on-paper.svg` | Fixed colours for documents, email, signage |
 | `public/favicon.svg`, `favicon.ico`, `apple-touch-icon.png` | Navy tile, red star with cream outline |
 
-**This is a placeholder.** The final logo should come from a designer or an image tool.
+**Approved by the owner (Pass 1).** Keep it. Rebuild with `npm run logo` if the geometry changes.
 
 ## Components
 
@@ -90,7 +91,7 @@ Wordmark: star + "TRANS STAR" in Archivo Expanded ExtraBold, outlined to paths.
 | `Team` | Owner portrait + crew list |
 | `Coverage` | Facts list + photo |
 | `QuoteForm` + `Faq` | Short form, native `<details>` FAQ |
-| `MobileBar` | Sticky Call / Quote on phones |
+| `MobileBar` | Sticky Call / Quote on phones; appears once the hero buttons scroll away, hides over the quote form |
 | `Footer` | Wordmark, contact, illustrative + GST note |
 
 ### PhotoSlot

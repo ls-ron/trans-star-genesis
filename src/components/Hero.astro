@@ -1,0 +1,67 @@
+---
+import PhotoSlot from './PhotoSlot.astro';
+import CtaPair from './CtaPair.astro';
+---
+
+<section class="on-navy hero" aria-labelledby="hero-h">
+  <PhotoSlot
+    variant="background"
+    name="hero-truck-dawn"
+    brief="Reefer truck backed onto a loading dock at first light. Low angle, wide, doors open, no logos."
+    alt=""
+    sizes="100vw"
+    priority
+  />
+  <div class="wrap hero-in">
+    <span class="label eyebrow">Chilled &amp; frozen transport · Auckland</span>
+    <h1 id="hero-h">Cold freight around Auckland. <span class="ul">Same drivers</span>, every run.</h1>
+    <p class="lead">
+      TRANS STAR has spent 20+ years in logistics and now specialises in cold chain. Two trucks, a crew of four, chilled
+      and frozen in the same load, anywhere in the Auckland region.
+    </p>
+    <div>
+      <CtaPair id="hero-cta" />
+      <p class="note">New customer? Your first delivery is free. <span>One per business.</span></p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+    min-height: clamp(560px, 80vh, 800px);
+  }
+  .hero-in {
+    width: 100%;
+    display: grid;
+    gap: 22px;
+    padding-block: 150px clamp(36px, 6vw, 72px);
+  }
+  .eyebrow {
+    color: var(--color-inv-muted);
+  }
+  h1 {
+    max-width: 13ch;
+    font-weight: 600;
+    font-size: clamp(42px, 6.2vw, 96px);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+  .lead {
+    max-width: 52ch;
+    color: rgb(244 242 237 / 0.86);
+    font-size: clamp(17px, 1.35vw, 19px);
+  }
+  .note {
+    margin-top: 14px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .note span {
+    font-weight: 400;
+    color: var(--color-inv-muted);
+  }
+</style>

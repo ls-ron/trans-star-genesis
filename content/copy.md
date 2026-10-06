@@ -1,7 +1,7 @@
 # TRANS STAR: site copy
 
 Approved direction from the preview (version 7). NZ English, prices excl. GST.
-`[PLACEHOLDER: ...]` marks facts not yet supplied. `[CONFIRM]` marks claims the owner should sign off.
+`[PLACEHOLDER: ...]` marks facts not yet supplied. marks claims the owner should sign off.
 Open items are listed at the end.
 
 ---
@@ -21,7 +21,7 @@ Open items are listed at the end.
 
 - Photo: `hero-truck-dawn` (see PHOTO_LIST.md). Navy until supplied.
 - Eyebrow: Chilled & frozen transport · Auckland
-- **H1:** Cold freight around Auckland. _Same drivers_, every run. `[CONFIRM: "same drivers" promise]`
+- **H1:** Cold freight around Auckland. _Same drivers_, every run.
 - Lead: TRANS STAR has spent 20+ years in logistics and now specialises in cold chain. Two trucks, a crew of four, chilled and frozen in the same load, anywhere in the Auckland region.
 - Buttons: Request a quote · Call 022 075 1526
 - Note: **New customer? Your first delivery is free.** One per business.
@@ -61,9 +61,9 @@ Row 3 (paper chips)
 
 | # | Why runs go wrong | What we do |
 |---|---|---|
-| 1 | A different driver every week, and every one of them learns your dock from scratch. | **The same faces at your dock.** We're a crew of four. Whoever turns up has been to your site before, knows where to back in, and knows who signs. `[CONFIRM]` |
+| 1 | A different driver every week, and every one of them learns your dock from scratch. | **The same faces at your dock.** We're a crew of four. Whoever turns up has been to your site before, knows where to back in, and knows who signs. |
 | 2 | Product goes out warm or a door's left open, and nobody can say where the temperature went. | **Temperatures checked and written down.** We check the unit's set point and the product temperature at every pick-up and drop, and write them down. If you need proof, we send a photo of the reading. |
-| 3 | You find out a delivery's late when your customer rings to complain. | **You hear it from us first.** If a run is going to miss its window, we tell you before it does, with a new ETA. You're never the last to know. `[CONFIRM]` |
+| 3 | You find out a delivery's late when your customer rings to complain. | **You hear it from us first.** If a run is going to miss its window, we tell you before it does, with a new ETA. You're never the last to know. |
 | 4 | The paperwork turns up days later, if it turns up at all. | **Proof when you ask for it.** Signed dockets and temperature photos sent the same day. |
 
 ## 03 · The record (navy)
@@ -119,7 +119,7 @@ Row 3 (paper chips)
 - **H2:** You'll deal with _the person who drives._
 - Photo: `owner-portrait`
 - Body: TRANS STAR is Emilian's business. It started out delivering dry goods for restaurant brands, did that for over a decade, and now specialises in cold chain. Emilian still drives most days, so the person you ring is often the person at your dock.
-- Crew: **Emilian**, Owner, drives · **Amogh**, Driver · **Ashish**, Driver · **Ronald**, Driver `[CONFIRM: roles and permission to show first names]`
+- Crew: **Emilian**, Owner, drives · **Amogh**, Driver · **Ashish**, Driver · **Ronald**, Driver
 
 ## 07 · Coverage (navy)
 
@@ -190,8 +190,7 @@ Row 3 (paper chips)
 
 1. `[PLACEHOLDER]` Insurance: cover type and amount.
 2. `[PLACEHOLDER]` Form service: Netlify Forms or Formspree, decided at deploy.
-3. `[CONFIRM]` "Same drivers" (hero) and "The same faces at your dock" (row 1).
-4. `[CONFIRM]` "You hear it from us first" (row 3).
-5. `[CONFIRM]` Crew roles and permission to show first names.
-6. Photos: see PHOTO_LIST.md.
-7. Domain transstar.co.nz not bought yet.
+3. Photos: see PHOTO_LIST.md.
+4. Domain transstar.co.nz not bought yet.
+
+The owner wants items 1-4 kept as placeholders as long as possible.

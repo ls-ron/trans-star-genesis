@@ -19,5 +19,5 @@ npm run build    # static site in dist/
 - `DESIGN.md`: colours, type, components and the page map
 - `PHOTO_LIST.md`: the photos the site needs and how to shoot them
 - `assets/photos/`: drop photos here, named as in PHOTO_LIST.md, and rebuild
-- `assets/logo*.svg`, `public/favicon.*`: placeholder logo set (to be replaced by a designer)
+- `assets/logo*.svg`, `public/favicon.*`: logo set (approved; rebuild with `npm run logo`)
 - `CLAUDE.md`: working rules for Claude Code

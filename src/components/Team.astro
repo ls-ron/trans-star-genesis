@@ -1,0 +1,90 @@
+---
+import SectionHead from './SectionHead.astro';
+import PhotoSlot from './PhotoSlot.astro';
+
+const crew = [
+  { name: 'Emilian', role: 'Owner, drives' },
+  { name: 'Amogh', role: 'Driver' },
+  { name: 'Ashish', role: 'Driver' },
+  { name: 'Ronald', role: 'Driver' },
+];
+---
+
+<section class="sec" id="team" aria-labelledby="team-h">
+  <div class="wrap">
+    <SectionHead no="06" label="Who you're dealing with" id="team-h">
+      You'll deal with <em class="hl">the person who drives.</em>
+    </SectionHead>
+    <div class="team">
+      <PhotoSlot
+        name="owner-portrait"
+        ratio="4/5"
+        brief="Emilian beside the truck, waist up, natural light, looking at the camera. Plain background, no glare on the cab."
+        alt="Emilian, owner of TRANS STAR, standing beside one of the trucks"
+        sizes="(min-width: 960px) 40vw, 100vw"
+      />
+      <div class="copy">
+        <p>
+          TRANS STAR is Emilian's business. It started out delivering dry goods for restaurant brands, did that for over
+          a decade, and now specialises in cold chain. Emilian still drives most days, so the person you ring is often
+          the person at your dock.
+        </p>
+        <dl class="crew">
+          {
+            crew.map((c) => (
+              <div>
+                <dt>{c.name}</dt>
+                <dd>{c.role}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .team {
+    display: grid;
+    gap: 32px;
+    align-items: center;
+  }
+  .copy {
+    display: grid;
+    gap: 26px;
+    min-width: 0;
+  }
+  .copy p {
+    color: var(--color-ink-2);
+    max-width: 56ch;
+    font-size: clamp(17px, 1.3vw, 19px);
+  }
+  .crew {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 24px;
+    margin: 0;
+    border-top: 2px solid var(--color-ink);
+  }
+  .crew div {
+    padding-block: 14px;
+    border-bottom: 1px solid var(--color-line);
+  }
+  dt {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  dd {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 14.5px;
+  }
+  @media (min-width: 960px) {
+    .team {
+      grid-template-columns: 5fr 7fr;
+      gap: 64px;
+    }
+  }
+</style>

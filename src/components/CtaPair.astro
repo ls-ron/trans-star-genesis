@@ -1,0 +1,30 @@
+---
+// The page's one CTA, repeated: Request a quote + Call. Equal size and weight (ArcBest idea).
+import { site } from '../data/site';
+interface Props {
+  class?: string;
+  id?: string;
+}
+const { class: className, id } = Astro.props;
+---
+
+<div class:list={['cta-pair', className]} id={id}>
+  <a class="btn btn-quote" href="#quote">Request a quote</a>
+  <a class="btn btn-call" href={site.phone.href}>Call {site.phone.display}</a>
+</div>
+
+<style>
+  .cta-pair {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .cta-pair .btn {
+    flex: 1 1 100%;
+  }
+  @media (min-width: 560px) {
+    .cta-pair .btn {
+      flex: 0 0 auto;
+    }
+  }
+</style>

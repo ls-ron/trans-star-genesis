@@ -1,0 +1,92 @@
+---
+// Anonymous worries from shippers and operators. Never attributed, never quoted, never testimonials.
+// Pass 2: static rows. Pass 3 adds the slow sideways loop.
+const rows: { tone: 'paper' | 'navy'; items: string[] }[] = [
+  {
+    tone: 'paper',
+    items: [
+      'The load arrived warm and nobody can say why.',
+      'I found out it was late from my own customer.',
+      'Another missed delivery slot.',
+      'The temperature records turn up a week later, if at all.',
+      'Rejected at the DC for temperature. Again.',
+    ],
+  },
+  {
+    tone: 'navy',
+    items: [
+      "A new driver every week who doesn't know our dock.",
+      "I need a subbie I don't have to check on.",
+      "Peak's coming and I'm a truck short.",
+      'Nobody answers the phone when a run slips.',
+    ],
+  },
+  {
+    tone: 'paper',
+    items: [
+      'The paperwork takes longer than the run.',
+      'Who signed for it? Nobody knows.',
+      'Every driver unloads it differently.',
+      "I can't take that contract without another truck.",
+    ],
+  },
+];
+---
+
+<div class="worries">
+  <div class="wrap">
+    <p class="label head" id="worries-h">Sound familiar?</p>
+  </div>
+  <div class="rows" role="group" aria-labelledby="worries-h">
+    <p class="sr-only">Common worries in cold freight, written as anonymous thoughts.</p>
+    {
+      rows.map((row) => (
+        <ul class:list={['row', row.tone]}>
+          {row.items.map((t) => (
+            <li class="chip">{t}</li>
+          ))}
+        </ul>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .worries {
+    margin-top: clamp(40px, 5vw, 56px);
+  }
+  .head {
+    color: var(--color-muted);
+    margin-bottom: 18px;
+  }
+  .rows {
+    display: grid;
+    gap: 12px;
+    max-width: var(--max);
+    margin-inline: auto;
+    padding-inline: var(--pad);
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .chip {
+    border: 1.5px solid var(--color-ink);
+    background: var(--color-card);
+    border-radius: 999px;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: clamp(15px, 1.25vw, 18px);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .navy .chip {
+    background: var(--color-navy);
+    border-color: var(--color-navy);
+    color: var(--color-inv-ink);
+  }
+</style>
