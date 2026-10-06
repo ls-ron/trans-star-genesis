@@ -17,6 +17,12 @@ npm run logo -- <Archivo-Expanded-ExtraBold.ttf>   # rebuild logo set (see scrip
 npm run og       # rebuild public/og-image.png (share image placeholder)
 ```
 
+## Hosting
+- Netlify (free plan), deploys `main`. Config in `netlify.toml`. Quote form uses Netlify Forms
+  (`data-netlify`, honeypot `company-website`); submissions under Netlify → Forms → quote.
+- The dev server can't receive the form; it says so instead of pretending to send.
+- Until Netlify's primary URL is transstar.co.nz, pages carry `noindex` (see `Base.astro`).
+
 ## Layout of the repo
 - `src/pages/index.astro`: the page. `src/components/`: sections and `PhotoSlot`.
 - `src/styles/global.css`: tokens (`@theme`) and the few shared component classes.

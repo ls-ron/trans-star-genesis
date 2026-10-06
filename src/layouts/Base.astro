@@ -15,6 +15,11 @@ const { title, description } = Astro.props;
 const base = Astro.site ?? new URL(site.url);
 const canonical = new URL(Astro.url.pathname, base).href;
 
+// On Netlify, URL is the site's primary address. Until that is the real domain (e.g. while it is
+// still *.netlify.app), ask search engines not to index. Local builds are unaffected.
+const deployUrl = process.env.URL;
+const noindex = Boolean(deployUrl) && new URL(deployUrl!).hostname !== base.hostname;
+
 // Share image: og-share.jpg, else a crop of the hero photo, else the wordmark placeholder.
 const photos = import.meta.glob<{ default: ImageMetadata }>(
   '/assets/photos/{og-share,hero-truck-dawn}.{jpg,jpeg,JPG,JPEG}',
@@ -60,6 +65,7 @@ const business = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="preload" href={fontLatin} as="font" type="font/woff2" crossorigin />
 
     <link rel="icon" href="/favicon.ico" sizes="32x32" />

@@ -27,8 +27,20 @@ const faqs = [
         We'll call you back within one business day. Prefer email? <a href={`mailto:${site.email}`}>{site.email}</a>
       </p>
 
-      <!-- [PLACEHOLDER: form service, decided at deploy (Netlify Forms or Formspree)] -->
-      <form class="form" name="quote" method="post" data-form-pending novalidate>
+      <!-- Netlify Forms: detected at deploy from the static HTML. Submissions: Netlify → Forms → quote. -->
+      <form
+        class="form"
+        name="quote"
+        method="post"
+        data-netlify="true"
+        netlify-honeypot="company-website"
+        data-quote-form
+        novalidate
+      >
+        <input type="hidden" name="form-name" value="quote" />
+        <p class="trap" aria-hidden="true">
+          <label>Leave this empty <input name="company-website" tabindex="-1" autocomplete="off" /></label>
+        </p>
         <div class="grid">
           <div class="fld">
             <label for="f-name">Name</label>
@@ -71,7 +83,7 @@ const faqs = [
           </div>
         </div>
         <div class="foot">
-          <button class="btn btn-quote" type="submit">Request a quote</button>
+          <button class="btn btn-quote" type="submit" data-submit>Request a quote</button>
           <p>Your first delivery is free.</p>
         </div>
         <p class="msg" role="status" aria-live="polite"></p>
@@ -96,20 +108,46 @@ const faqs = [
 </section>
 
 <script>
-  // Until a form service is chosen, don't pretend to send: point people to the phone and email.
-  const form = document.querySelector<HTMLFormElement>('form[data-form-pending]');
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const msg = form.querySelector<HTMLElement>('.msg');
+  // Sends the quote form to Netlify Forms without leaving the page.
+  // Without JS the browser posts normally and Netlify shows its own thank-you page.
+  const form = document.querySelector<HTMLFormElement>('form[data-quote-form]');
+  const msg = form?.querySelector<HTMLElement>('.msg');
+  const button = form?.querySelector<HTMLButtonElement>('[data-submit]');
+
+  const say = (state: 'error' | 'sent' | 'sending', text: string) => {
     if (!msg) return;
+    msg.dataset.state = state;
+    msg.textContent = text;
+  };
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
     if (!form.checkValidity()) {
-      msg.dataset.state = 'error';
-      msg.textContent = 'Please add your name, company and a phone number or email so we can get back to you.';
+      say('error', 'Please add your name, company and a phone number or email so we can get back to you.');
       form.querySelector<HTMLInputElement>(':invalid')?.focus();
       return;
     }
-    msg.dataset.state = 'pending';
-    msg.textContent = "The form isn't connected yet. Please call 022 075 1526 or email trans_starnz@yahoo.co.nz.";
+    if (import.meta.env.DEV) {
+      say('error', 'Dev server: the form only sends on Netlify. Nothing was submitted.');
+      return;
+    }
+    if (button) button.disabled = true;
+    say('sending', 'Sending…');
+    try {
+      const body = new URLSearchParams(new FormData(form) as unknown as Record<string, string>).toString();
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset();
+      say('sent', "Thanks. We'll call you back within one business day.");
+    } catch {
+      say('error', "That didn't send. Please call 022 075 1526 or email trans_starnz@yahoo.co.nz.");
+    } finally {
+      if (button) button.disabled = false;
+    }
   });
 </script>
 
@@ -236,6 +274,13 @@ const faqs = [
   }
   .msg[data-state='error'] {
     color: var(--color-ph-ink);
+  }
+  .msg[data-state='sent'] {
+    color: var(--color-ok);
+  }
+  .trap {
+    position: absolute;
+    left: -9999px;
   }
 
   .faq-h {

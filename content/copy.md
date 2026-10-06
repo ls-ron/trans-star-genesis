@@ -156,7 +156,9 @@ Row 3 (paper chips)
 - Submit: **Request a quote** · beside it: Your first delivery is free.
 - Success: Thanks. We'll call you back within one business day.
 - Error (missing fields): Please add your name, company and a phone number or email so we can get back to you.
-- Form destination: `[PLACEHOLDER: form service, decided at deploy (Netlify Forms or Formspree)]`
+- Form destination: Netlify Forms (form name `quote`), email notifications to trans_starnz@yahoo.co.nz
+- Sending: Sending…
+- Send failed: That didn't send. Please call 022 075 1526 or email trans_starnz@yahoo.co.nz.
 
 **FAQ** (label: Questions)
 1. **What's included in the free first delivery?** One delivery for each new business, at no charge. If the job needs a return trip or a second load, that part is billed. Urgent loads can sometimes be the first delivery. We'll sort that out on the call.
@@ -189,8 +191,9 @@ Row 3 (paper chips)
 ## Open items
 
 1. `[PLACEHOLDER]` Insurance: cover type and amount.
-2. `[PLACEHOLDER]` Form service: Netlify Forms or Formspree, decided at deploy.
+2. Form service: Netlify Forms (decided). Owner to turn on email notifications in Netlify.
 3. Photos: see PHOTO_LIST.md.
 4. Domain transstar.co.nz not bought yet.
 
-The owner wants items 1-4 kept as placeholders as long as possible.
+The owner wants insurance kept as a placeholder for now; ask again before launch. Launch waits for
+the domain to be bought.
