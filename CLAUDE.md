@@ -48,8 +48,7 @@ npm run og       # rebuild public/og-image.png (share image placeholder)
 - NZ English. Prices excl. GST. Plain-spoken, steady, a little dry.
 - Never invent statistics, clients, testimonials, certifications, insurance details, fleet specs or awards.
   Unknown facts go in as `[PLACEHOLDER: ...]` and are listed at the end of every pass.
-  Owner wants insurance, form service, photos and domain kept as placeholders as long as possible;
-  tell the owner as soon as any of them blocks progress.
+  Live site: insurance FAQ removed until cover is confirmed; photos stay as placeholders until supplied.
 - Never name the principal contractor (Hall's) or use its branding. Say "a major NZ cold chain operator".
 - No superlatives (longest-serving, best, #1) unless the owner confirms them.
 - Worries in the scrolling band are anonymous thoughts: no names, no quote marks, never testimonials.
