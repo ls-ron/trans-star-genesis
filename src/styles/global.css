@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/* Design tokens. Source of truth: DESIGN.md. Navy leads, paper supports, red accents. */
+@theme {
+  --color-paper: #f4f2ed;
+  --color-paper-2: #e8e5dd;
+  --color-card: #fbfaf7;
+  --color-ink: #15171b;
+  --color-ink-2: #2c2f34;
+  --color-muted: #5b5e66;
+  --color-line: rgb(21 23 27 / 0.13);
+  --color-line-2: rgb(21 23 27 / 0.3);
+
+  --color-navy: #1d3a66;
+  --color-navy-2: #2a4b7f;
+  --color-navy-3: #24447a;
+  --color-inv-ink: #f4f2ed;
+  --color-inv-muted: #b7c3d8;
+  --color-inv-line: rgb(244 242 237 / 0.18);
+  --color-inv-line-2: rgb(244 242 237 / 0.42);
+
+  --color-red: #c8102e;
+  --color-red-hover: #af0e28;
+  --color-ok: #2e5e45;
+
+  --color-slot: #e2ded5;
+  --color-slot-ink: #6a6b70;
+  --color-ph: #f8dde2;
+  --color-ph-ink: #8e0b21;
+
+  --font-sans: "Schibsted Grotesk Variable", "Helvetica Neue", Arial, sans-serif;
+
+  --radius-card: 16px;
+  --radius-btn: 10px;
+
+  --ease-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+:root {
+  --max: 1320px;
+  --pad: clamp(20px, 4vw, 56px);
+  --sec-y: clamp(72px, 9vw, 128px);
+  --nav-h: 70px;
+  --hero-scrim: rgb(29 58 102 / 0.55);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 40px);
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 17px;
+    line-height: 1.55;
+    overflow-x: clip;
+  }
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  :focus-visible {
+    outline: 3px solid var(--color-navy-2);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
+
+@layer components {
+  .wrap {
+    max-width: var(--max);
+    margin-inline: auto;
+    padding-inline: var(--pad);
+  }
+
+  /* Eyebrow: "01 · The problem" */
+  .label {
+    font: 600 12px/1.3 var(--font-sans);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .label .no { color: var(--color-navy-2); }
+  .on-navy .label .no { color: var(--color-inv-muted); }
+
+  /* Highlighted headline phrase: red on paper; cream + red underline on navy */
+  .hl { font-style: normal; color: var(--color-red); }
+  .on-navy .hl,
+  .ul {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--color-red);
+    text-decoration-thickness: 0.075em;
+    text-underline-offset: 0.12em;
+  }
+
+  /* Buttons: equal size and weight, differ only in hue */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 52px;
+    padding-inline: 24px;
+    border-radius: var(--radius-btn);
+    font: 600 16px/1 var(--font-sans);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .btn-quote { background: var(--color-red); color: #fff; }
+  .btn-quote:hover { background: var(--color-red-hover); }
+  .btn-call { background: var(--color-navy); color: var(--color-inv-ink); }
+  .btn-call:hover { background: var(--color-navy-2); }
+  .on-navy .btn-call { background: var(--color-paper); color: var(--color-ink); }
+  .on-navy .btn-call:hover { background: var(--color-card); }
+}

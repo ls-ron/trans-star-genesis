@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import Wordmark from '../../assets/logo-wordmark.svg';
+
+const phone = { display: '022 075 1526', href: 'tel:+64220751526' };
+---
+
+<Base
+  title="TRANS STAR | Chilled and frozen transport, Auckland"
+  description="Small Auckland cold chain carrier. 20+ years in logistics, two trucks, chilled and frozen in the same load, Sunday to Friday."
+>
+  <!-- Pass 1 holding page: header + hero only. Full layout comes in Pass 2. -->
+  <header class="on-navy sticky top-0 z-30 bg-navy text-inv-ink border-b border-inv-line">
+    <div class="wrap flex items-center justify-between gap-4" style="height: var(--nav-h)">
+      <a href="#top" aria-label="TRANS STAR, home" class="text-inv-ink">
+        <Wordmark class="h-4 w-auto lg:h-5" aria-hidden="true" />
+      </a>
+      <div class="flex gap-2.5">
+        <a class="btn btn-call hidden lg:inline-flex !h-11 !px-4 !text-[15px]" href={phone.href}>Call {phone.display}</a>
+        <a class="btn btn-quote !h-11 !px-4 !text-[15px]" href="#quote">Request a quote</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="on-navy relative isolate flex items-end bg-navy text-inv-ink min-h-[clamp(560px,80vh,800px)]">
+      <div class="wrap w-full grid gap-[22px] pt-[150px] pb-[clamp(36px,6vw,72px)]">
+        <span class="label text-inv-muted">Chilled &amp; frozen transport · Auckland</span>
+        <h1 class="font-semibold max-w-[13ch] text-[clamp(42px,6.2vw,96px)] leading-[0.98] tracking-[-0.045em]">
+          Cold freight around Auckland. <span class="ul">Same drivers</span>, every run.
+        </h1>
+        <p class="max-w-[52ch] text-inv-ink/85 text-[clamp(17px,1.35vw,19px)]">
+          TRANS STAR has spent 20+ years in logistics and now specialises in cold chain. Two trucks, a crew of four,
+          chilled and frozen in the same load, anywhere in the Auckland region.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a class="btn btn-quote basis-full sm:basis-auto" href="#quote">Request a quote</a>
+          <a class="btn btn-call basis-full sm:basis-auto" href={phone.href}>Call {phone.display}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>
