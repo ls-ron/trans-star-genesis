@@ -22,7 +22,7 @@ Order of importance: **navy, paper, red.** Tokens live in `src/styles/global.css
 | `line` / `line-2` | ink at 13% / 30% | Rules, input borders |
 | `red` | `#C8102E` (NZ flag red) | Quote button, star, highlighted phrase on paper, underline on navy |
 | `ok` | `#2E5E45` | "Free" tags only |
-| `slot` / `slot-ink` | `#E2DED5` / `#6A6B70` | Photo placeholder on paper |
+| `slot` / `slot-ink` | `#E2DED5` / `#55565B` | Photo placeholder on paper |
 | `ph` / `ph-ink` | `#F8DDE2` / `#8E0B21` | `[PLACEHOLDER]` tokens in copy (removed before launch) |
 
 **Red on navy:** flag red on navy is about 1.9:1, too low to read. On navy, a highlighted phrase is
@@ -130,6 +130,17 @@ adds the navy scrim (`--hero-scrim`, solid, no gradient).
 - **Nothing else animates.** No hover fades, no rotating icons.
 - **Reduced motion:** reveal and band are off. On phones each band row swipes sideways; from 960px the chips wrap.
   The Pause button is hidden because nothing moves.
+
+## Search and sharing
+
+- `<title>`, meta description and canonical in `src/layouts/Base.astro`; site URL from `astro.config.mjs`
+  (`transstar.co.nz`, a placeholder until the domain is bought).
+- Share image: `assets/photos/og-share.jpg` → crop of `hero-truck-dawn.jpg` → `public/og-image.png` (wordmark on navy).
+- `LocalBusiness` JSON-LD with confirmed facts only: name, phone, email, Auckland region, Sunday-Friday any hour.
+  No street address, founding date, ratings or price range until the owner supplies them.
+- `/sitemap.xml` and `/robots.txt` are tiny endpoints in `src/pages/` (no sitemap dependency).
+- Performance: CSS and scripts inlined (page about 17 KB gzipped), heading font preloaded, photos as AVIF/WebP
+  with responsive widths; the hero photo loads with high priority, the rest lazily.
 
 ## Banned
 

@@ -14,6 +14,7 @@ npm run dev      # http://localhost:4321
 npm run build    # must pass before every commit
 npm run preview  # serve dist/
 npm run logo -- <Archivo-Expanded-ExtraBold.ttf>   # rebuild logo set (see script header)
+npm run og       # rebuild public/og-image.png (share image placeholder)
 ```
 
 ## Layout of the repo

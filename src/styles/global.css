@@ -24,7 +24,7 @@
   --color-ok: #2e5e45;
 
   --color-slot: #e2ded5;
-  --color-slot-ink: #6a6b70;
+  --color-slot-ink: #55565b;
   --color-ph: #f8dde2;
   --color-ph-ink: #8e0b21;
 
@@ -80,6 +80,9 @@
     outline: 3px solid var(--color-navy-2);
     outline-offset: 3px;
     border-radius: 4px;
+  }
+  .on-navy :focus-visible {
+    outline-color: var(--color-inv-ink);
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }

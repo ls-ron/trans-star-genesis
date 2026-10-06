@@ -13,7 +13,7 @@ const links = [
 <header class="on-navy header">
   <div class="wrap header-in">
     <a href="#" class="brand" aria-label={`${site.name}, back to top`}>
-      <Wordmark class="h-4 w-auto lg:h-5" aria-hidden="true" />
+      <Wordmark class="h-4 w-auto max-[399px]:h-3.5 lg:h-5" aria-hidden="true" />
     </a>
     <nav aria-label="Sections" class="links">
       {links.map((l) => <a href={l.href}>{l.label}</a>)}
@@ -69,6 +69,26 @@ const links = [
   .call {
     display: none;
   }
+  /* Small phones: tighten, then drop the header CTA (the hero pair and bottom bar cover it) */
+  @media (max-width: 399px) {
+    .header-in {
+      gap: 12px;
+    }
+    .ctas .btn {
+      padding-inline: 12px;
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 349px) {
+    .ctas {
+      display: none;
+    }
+  }
+  @media (min-width: 640px) {
+    .ctas .call {
+      display: inline-flex;
+    }
+  }
   /* phones: once the bottom bar is showing, it carries the CTAs */
   @media (max-width: 959px) {
     :global(html[data-mbar='on']) .ctas {
@@ -78,9 +98,6 @@ const links = [
   @media (min-width: 1080px) {
     .links {
       display: flex;
-    }
-    .ctas .call {
-      display: inline-flex;
     }
   }
 </style>

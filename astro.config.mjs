@@ -6,6 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://transstar.co.nz',
   output: 'static',
+  // One page: inline the CSS so first paint doesn't wait on a stylesheet request.
+  build: { inlineStylesheets: 'always' },
   vite: {
     plugins: [tailwindcss()],
   },

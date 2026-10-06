@@ -27,7 +27,7 @@ No stock photos and no AI-generated images. Real trucks, real people, real Auckl
 | 1 | `hero-truck-dawn.jpg` | One of the trucks backed onto a loading dock at first light, doors open, unit running | Landscape | 2880 × 1620 px (a full-size phone photo, usually 4032 × 3024, is ideal) | Low angle from about knee height, truck in the middle with space all round, plain left side for the headline |
 | 2 | `owner-portrait.jpg` | Emilian beside a truck, waist up, looking at the camera | Portrait (4:5) | 1600 × 2000 px | Soft daylight on the face (shade on a bright day), cab or reefer unit behind, no squinting into the sun |
 | 3 | `coverage-road.jpg` | A truck on an Auckland motorway or arterial road, early morning | Portrait (4:5) | 1600 × 2000 px | Three-quarter front view from a safe spot on the roadside, truck sharp, road leading into the frame |
-| 4 | `og-share.jpg` (optional) | Image shown when the site is shared on social media or in messages | Landscape | 1200 × 630 px | Usually a crop of the hero shot; skip it and we'll crop the hero for you |
+| 4 | `og-share.jpg` (optional) | Image shown when the site is shared on social media or in messages | Landscape | 1200 × 630 px | Optional. Without it the site crops the hero shot, or uses the logo until a hero photo exists |
 
 ## How each photo is used
 
