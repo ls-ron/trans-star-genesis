@@ -121,9 +121,15 @@ adds the navy scrim (`--hero-scrim`, solid, no gradient).
 
 ## Motion
 
-- Scroll reveal: fade up 16px over 0.8s (`--ease-soft`), staggered. Content is visible without JS.
-- Worries band: three rows drift sideways (80-92s loop, middle row reversed), pause on hover.
-- Nothing else animates. Under `prefers-reduced-motion`, both are off and the chips wrap in place.
+- **Scroll reveal:** blocks marked `data-reveal` fade up 16px over 0.8s (`--ease-soft`). Blocks that enter
+  together are staggered 90ms apart. They are hidden only after JS adds `html.js`, so the page reads fine without JS.
+  The hero never reveals (it is above the fold).
+- **Worries band:** three full-bleed rows drift sideways (80s, 92s reversed, 72s), hard-cropped at the screen edge.
+  Each row holds its set twice (copy `aria-hidden`) for a seamless loop. Pauses on hover; a Pause/Play text
+  button covers touch and keyboard users (WCAG 2.2.2).
+- **Nothing else animates.** No hover fades, no rotating icons.
+- **Reduced motion:** reveal and band are off. On phones each band row swipes sideways; from 960px the chips wrap.
+  The Pause button is hidden because nothing moves.
 
 ## Banned
 

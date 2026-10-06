@@ -22,7 +22,7 @@ const facts = [
       All of Auckland. <em class="hl">Any hour, six days a week.</em>
     </SectionHead>
     <div class="cov">
-      <dl class="facts">
+      <dl class="facts" data-reveal>
         {
           facts.map((f) => (
             <div class="fact">
@@ -35,13 +35,15 @@ const facts = [
           ))
         }
       </dl>
-      <PhotoSlot
-        name="coverage-road"
-        ratio="4/5"
-        brief="One of the trucks on an Auckland motorway or arterial road, early morning, three-quarter view from the roadside."
-        alt="A TRANS STAR truck on an Auckland road in the early morning"
-        sizes="(min-width: 960px) 36vw, 100vw"
-      />
+      <div data-reveal>
+        <PhotoSlot
+          name="coverage-road"
+          ratio="4/5"
+          brief="One of the trucks on an Auckland motorway or arterial road, early morning, three-quarter view from the roadside."
+          alt="A TRANS STAR truck on an Auckland road in the early morning"
+          sizes="(min-width: 960px) 36vw, 100vw"
+        />
+      </div>
     </div>
   </div>
 </section>

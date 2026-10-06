@@ -19,7 +19,7 @@ const faqs = [
 
 <section class="sec" id="quote" aria-labelledby="quote-h">
   <div class="wrap contact">
-    <div>
+    <div data-reveal>
       <span class="label"><span class="no">08</span> · Get a quote</span>
       <h2 id="quote-h">Get a quote. <em class="hl">Or just ring.</em></h2>
       <a class="bignum" href={site.phone.href}>{site.phone.display}</a>
@@ -78,7 +78,7 @@ const faqs = [
       </form>
     </div>
 
-    <div class="faq" id="faq">
+    <div class="faq" id="faq" data-reveal>
       <h2 class="label faq-h">Questions</h2>
       {
         faqs.map((f, i) => (
@@ -267,7 +267,6 @@ const faqs = [
     flex: 0 0 auto;
     font-size: 22px;
     line-height: 1;
-    transition: transform 0.3s, color 0.3s;
   }
   details[open] .pm {
     color: var(--color-red);
@@ -291,11 +290,6 @@ const faqs = [
     .contact {
       grid-template-columns: 7fr 5fr;
       gap: 80px;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .pm {
-      transition: none;
     }
   }
 </style>

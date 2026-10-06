@@ -31,7 +31,7 @@ const rows = [
       Most runs don't go wrong on the road. <em class="hl">They go wrong at the handover.</em>
     </SectionHead>
 
-    <div class="cols" aria-hidden="true">
+    <div class="cols" aria-hidden="true" data-reveal>
       <span></span>
       <h3>Why runs go wrong</h3>
       <h3 class="hl">What we do</h3>
@@ -39,7 +39,7 @@ const rows = [
     <ol class="table">
       {
         rows.map((r, i) => (
-          <li class="row">
+          <li class="row" data-reveal>
             <span class="n" aria-hidden="true">{i + 1}</span>
             <div class="body">
               <div class="why">

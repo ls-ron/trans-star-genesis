@@ -26,12 +26,12 @@ const panels = [
   <div class="wrap">
     <SectionHead no="04" label="Before and after" id="ba-h">
       Same morning. <em class="hl">Different carrier.</em>
-      <p slot="lead">An illustrative 6:30 DC delivery, run two ways.</p>
+      <p slot="lead" data-reveal>An illustrative 6:30 DC delivery, run two ways.</p>
     </SectionHead>
     <div class="ba">
       {
         panels.map((p) => (
-          <article class:list={['panel', p.key, { 'on-navy': p.key === 'after' }]} aria-labelledby={`ba-${p.key}`}>
+          <article class:list={['panel', p.key, { 'on-navy': p.key === 'after' }]} aria-labelledby={`ba-${p.key}`} data-reveal>
             <div class="top">
               <span class="label">{p.label}</span>
               <span class="tag">Illustrative</span>

@@ -31,7 +31,7 @@ const steps = [
   <div class="wrap">
     <SectionHead no="05" label="How we work" id="how-h">
       Three steps. <em class="hl">Your first delivery is free.</em>
-      <p slot="lead">
+      <p slot="lead" data-reveal>
         We're a small business. Giving away a delivery isn't cheap for us. We do it because once you've seen one run
         done properly, you won't want to go back.
       </p>
@@ -40,7 +40,7 @@ const steps = [
     <ol class="steps">
       {
         steps.map((s) => (
-          <li class="step">
+          <li class="step" data-reveal>
             <div class="step-n">
               <span class="num">{s.n}</span>
               <span class:list={['tag', { 'tag-free': s.free }]}>{s.tag}</span>
@@ -53,7 +53,7 @@ const steps = [
     </ol>
 
     <!-- Runway (Hemut idea): free until regular runs start -->
-    <div class="runway">
+    <div class="runway" data-reveal>
       <p class="pay-here">You don't pay until here.</p>
       <span class="seg s1" aria-hidden="true"></span>
       <span class="seg s2" aria-hidden="true"></span>

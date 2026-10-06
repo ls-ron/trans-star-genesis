@@ -14,7 +14,7 @@ const stats = [
   <div class="wrap">
     <SectionHead no="03" label="The record" id="record-h">
       Twenty years of turning up.
-      <p slot="lead">
+      <p slot="lead" data-reveal>
         Over a decade delivering dry goods for restaurant brands, then cold chain. Today we contract to a major NZ cold
         chain operator.
       </p>
@@ -22,7 +22,7 @@ const stats = [
     <dl class="stats">
       {
         stats.map((s) => (
-          <div class="stat">
+          <div class="stat" data-reveal>
             <dt>{s.label}</dt>
             <dd>{s.n}</dd>
           </div>

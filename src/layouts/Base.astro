@@ -13,6 +13,7 @@ const { title, description } = Astro.props;
 <html lang="en-NZ">
   <head>
     <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -23,5 +24,28 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <slot />
+    <script>
+      // Reveal [data-reveal] blocks as they enter the viewport. Blocks entering together are staggered.
+      const els = [...document.querySelectorAll<HTMLElement>('[data-reveal]')];
+      const show = (el: HTMLElement) => el.classList.add('in');
+      if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach(show);
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries
+              .filter((e) => e.isIntersecting)
+              .map((e) => e.target as HTMLElement)
+              .forEach((el, i) => {
+                el.style.setProperty('--d', String(Math.min(i, 5)));
+                show(el);
+                io.unobserve(el);
+              });
+          },
+          { rootMargin: '0px 0px -8% 0px' },
+        );
+        els.forEach((el) => io.observe(el));
+      }
+    </script>
   </body>
 </html>

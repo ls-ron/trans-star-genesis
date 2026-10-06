@@ -10,7 +10,7 @@ const { no, label, id } = Astro.props;
 ---
 
 <div class="sec-head">
-  <span class="label"><span class="no">{no}</span> · {label}</span>
-  <h2 id={id}><slot /></h2>
+  <span class="label" data-reveal><span class="no">{no}</span> · {label}</span>
+  <h2 id={id} data-reveal><slot /></h2>
   <slot name="lead" />
 </div>
