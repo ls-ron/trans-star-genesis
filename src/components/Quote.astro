@@ -12,7 +12,6 @@ const faqs = [
   },
   { q: 'Where do you go?', a: 'Anywhere in the Auckland region, Sunday to Friday, at any time of day.' },
   { q: 'Is there a minimum?', a: 'No. One pallet or a full truck. We prefer regular runs, booked at least 48 hours ahead.' },
-  { q: 'Are you insured?', placeholder: 'cover type and amount, confirmed with your insurer before launch' },
   { q: 'Do prices include GST?', a: 'No. All prices are quoted excluding GST.' },
 ];
 ---
@@ -99,7 +98,7 @@ const faqs = [
               {f.q}
               <span class="pm" aria-hidden="true">+</span>
             </summary>
-            <p>{f.a ?? <span class="ph-tok">[PLACEHOLDER: {f.placeholder}]</span>}</p>
+            <p>{f.a}</p>
           </details>
         ))
       }

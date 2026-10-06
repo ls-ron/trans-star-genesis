@@ -165,8 +165,7 @@ Row 3 (paper chips)
 2. **How do you record temperatures?** By hand. We check the unit's set point and the product temperature at every pick-up and drop and write them down. If you need proof, we'll send a photo of the reading the same day.
 3. **Where do you go?** Anywhere in the Auckland region, Sunday to Friday, at any time of day.
 4. **Is there a minimum?** No. One pallet or a full truck. We prefer regular runs, booked at least 48 hours ahead.
-5. **Are you insured?** `[PLACEHOLDER: cover type and amount, confirmed with your insurer before launch]`
-6. **Do prices include GST?** No. All prices are quoted excluding GST.
+5. **Do prices include GST?** No. All prices are quoted excluding GST.
 
 ## Footer (navy)
 
@@ -190,10 +189,9 @@ Row 3 (paper chips)
 
 ## Open items
 
-1. `[PLACEHOLDER]` Insurance: cover type and amount.
+1. Insurance: FAQ question removed at launch (owner's call). Add it back once cover is confirmed.
 2. Form service: Netlify Forms (decided). Owner to turn on email notifications in Netlify.
 3. Photos: see PHOTO_LIST.md.
 4. Domain transstar.co.nz not bought yet.
 
-The owner wants insurance kept as a placeholder for now; ask again before launch. Launch waits for
-the domain to be bought.
+Photos stay as placeholders after launch; swap them in by adding files to assets/photos/.
