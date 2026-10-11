@@ -145,6 +145,17 @@
     border-radius: 5px;
   }
 
+  .skip {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 50;
+    padding: 10px 14px;
+    border-radius: var(--radius-btn);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-weight: 600;
+  }
   .sr-only-focusable:not(:focus) {
     position: absolute;
     width: 1px;

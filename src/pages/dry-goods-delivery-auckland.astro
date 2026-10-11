@@ -1,0 +1,76 @@
+---
+// Owns: dry goods delivery auckland, pallet delivery auckland / nz, pallet delivery cost (SEO.md §4)
+import ServicePage from '../layouts/ServicePage.astro';
+import { guide } from '../data/site';
+---
+
+<ServicePage
+  kind="service"
+  href="/dry-goods-delivery-auckland/"
+  title="Dry Goods & Pallet Delivery Auckland | TRANS STAR"
+  description="Dry goods and pallet delivery across Auckland, on its own or with your chilled and frozen load. No minimum, Sunday to Friday, any hour. First delivery free."
+  crumb="Dry goods delivery"
+  serviceType="Dry goods and pallet delivery"
+  eyebrow="Dry goods & pallets · Auckland"
+  h1="Dry goods and pallet delivery around Auckland."
+  lead="Dry and ambient goods, on their own or riding with a chilled or frozen load. TRANS STAR spent over a decade delivering dry goods for restaurant brands before specialising in refrigerated transport, so this is where we started."
+  blocks={[
+    {
+      h2: 'Dry goods delivery, from the people who started there',
+      paras: [
+        'Before TRANS STAR specialised in refrigerated transport, it spent over a decade delivering dry goods for restaurant brands. Dry and ambient freight is still part of what we do, on its own or alongside chilled and frozen loads.',
+        'You get the same small crew, booked delivery windows, and signed dockets sent the same day when you ask.',
+      ],
+    },
+    {
+      h2: 'What we deliver',
+      paras: ['Anything that travels on a pallet or in cartons without refrigeration, for example:'],
+      list: [
+        'Dry and ambient food: flour, rice, tinned and packaged goods',
+        'Drinks and bottled goods',
+        'Packaging and kitchen supplies',
+        'Restaurant and hospitality supplies',
+        'Palletised retail stock',
+      ],
+    },
+    {
+      h2: 'Pallet delivery across Auckland',
+      paras: [
+        "Two trucks carry 14 and 15 pallets. There's no minimum, so a single pallet across town is as welcome as a full truck.",
+        "Mixed orders can share one run, with chilled and frozen goods kept at temperature alongside the dry freight. Regular runs need at least 48 hours' notice; for an urgent load, call and we'll tell you straight.",
+      ],
+    },
+  ]}
+  facts={[
+    { label: 'Loads', value: 'No minimum', note: 'One pallet or a full truck, up to 15 pallets.' },
+    { label: 'Mixed', value: 'Dry, chilled and frozen in one load', note: 'Set points from 2°C down to −18°C.' },
+    { label: 'Area', value: 'The whole Auckland region', note: 'Based in Ellerslie, central Auckland.' },
+    { label: 'Days', value: 'Sunday to Friday, any time of day', note: 'No Saturday runs for now.' },
+    { label: 'Notice', value: 'At least 48 hours for regular runs' },
+  ]}
+  faqHeading="Questions about dry goods and pallets"
+  faqs={[
+    {
+      q: 'Do you only do refrigerated freight?',
+      a: 'No. We deliver dry and ambient goods too, on their own or in the same load as chilled and frozen freight.',
+    },
+    {
+      q: 'How much does pallet delivery cost in Auckland?',
+      a: 'It depends on how many pallets, how far, what time and how often you ship. We quote each job, prices excl. GST, and your first delivery with us is free.',
+    },
+    { q: 'Can you deliver a single pallet?', a: "Yes. There's no minimum load." },
+    {
+      q: 'Can dry goods travel with chilled or frozen freight?',
+      a: 'Yes. Dry, chilled and frozen goods can share a load, each kept at its own temperature.',
+    },
+    {
+      q: 'Do you deliver to restaurants and hospitality businesses?',
+      a: 'Yes. Restaurant deliveries are where TRANS STAR started: over a decade of dry goods for restaurant brands.',
+    },
+  ]}
+  related={[
+    { href: '/chilled-freight-auckland/', text: 'Chilled freight in Auckland' },
+    { href: '/frozen-freight-auckland/', text: 'Frozen freight in Auckland' },
+    { href: '/', text: 'Refrigerated transport Auckland: how we work' },
+  ]}
+/>

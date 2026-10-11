@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
 import Problem from '../components/Problem.astro';
 import WhyWhat from '../components/WhyWhat.astro';
 import Record from '../components/Record.astro';
@@ -12,16 +13,20 @@ import Coverage from '../components/Coverage.astro';
 import Quote from '../components/Quote.astro';
 import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
+import { homeFaqs } from '../data/faqs';
+import { faqSchema } from '../data/schema';
 ---
 
 <Base
-  title="TRANS STAR | Chilled and frozen transport, Auckland"
-  description="Small Auckland cold chain carrier. 20+ years in logistics, two trucks, chilled and frozen in the same load, Sunday to Friday. First delivery free for new customers."
+  title="Refrigerated Transport Auckland | Chilled & Frozen | TRANS STAR"
+  description="Small Auckland refrigerated transport company. Chilled, frozen and dry goods in one load, 2°C to −18°C, Sunday to Friday. First delivery free: 022 075 1526."
+  schema={[faqSchema(homeFaqs)]}
 >
   <a class="skip sr-only-focusable" href="#main">Skip to content</a>
   <Header />
   <main id="main">
     <Hero />
+    <Services />
     <Problem />
     <WhyWhat />
     <Record />
@@ -34,17 +39,3 @@ import MobileBar from '../components/MobileBar.astro';
   <Footer />
   <MobileBar />
 </Base>
-
-<style>
-  .skip {
-    position: fixed;
-    top: 8px;
-    left: 8px;
-    z-index: 50;
-    padding: 10px 14px;
-    border-radius: var(--radius-btn);
-    background: var(--color-paper);
-    color: var(--color-ink);
-    font-weight: 600;
-  }
-</style>

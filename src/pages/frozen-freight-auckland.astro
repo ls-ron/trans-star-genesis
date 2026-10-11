@@ -1,0 +1,81 @@
+---
+// Owns: frozen freight auckland, frozen freight nz, frozen transport nz, frozen food transport (SEO.md §4)
+import ServicePage from '../layouts/ServicePage.astro';
+import { guide } from '../data/site';
+---
+
+<ServicePage
+  kind="service"
+  href="/frozen-freight-auckland/"
+  title="Frozen Freight Auckland | Frozen Food Transport | TRANS STAR"
+  description="Frozen freight across Auckland at set points down to −18°C. Temperatures checked at every stop, Sunday to Friday, no minimum load. First delivery free."
+  crumb="Frozen freight"
+  serviceType="Frozen freight transport"
+  eyebrow="Frozen freight · Auckland"
+  h1="Frozen freight around Auckland, held down to −18°C."
+  lead="TRANS STAR moves frozen food and goods anywhere in the Auckland region, Sunday to Friday, at any hour. A small crew, set points down to −18°C, and a temperature check at every pick-up and drop."
+  blocks={[
+    {
+      h2: 'Frozen food transport, by the same faces',
+      paras: [
+        "Most frozen loads that go wrong don't fail on the motorway. They fail at the dock: product loaded soft, a door left open, a driver who doesn't know your site. We're a crew of four, so whoever turns up has been to your dock before.",
+        "We check the unit's set point and the product temperature at pick-up and at drop, and write both down. If you need proof, we send a photo of the reading the same day.",
+      ],
+    },
+    {
+      h2: 'What we carry frozen',
+      paras: ['Our trucks hold set points down to −18°C, which suits most frozen food and ingredients:'],
+      list: [
+        'Frozen meat and poultry',
+        'Frozen seafood',
+        'Frozen ready meals and convenience food',
+        'Frozen bakery goods and dough',
+        'Frozen fruit, vegetables and ingredients',
+      ],
+      after:
+        "Need it colder than −18°C? Ask on the call and we'll tell you straight whether we're the right fit.",
+    },
+    {
+      h2: 'Frozen and chilled freight in one load',
+      paras: [
+        'Two trucks, 14 and 15 pallets. Frozen, chilled and dry goods can travel in the same load when you need it, each kept at its own temperature, so one run can cover a mixed order.',
+        "If a run is going to miss its delivery window, you hear it from us first, with a new ETA. You're never the last to know.",
+      ],
+    },
+  ]}
+  facts={[
+    { label: 'Set points', value: 'Down to −18°C' },
+    { label: 'Area', value: 'The whole Auckland region', note: 'Based in Ellerslie, central Auckland.' },
+    { label: 'Days', value: 'Sunday to Friday, any time of day', note: 'No Saturday runs for now.' },
+    { label: 'Loads', value: 'No minimum', note: 'One pallet or a full truck, up to 15 pallets.' },
+    { label: 'Notice', value: 'At least 48 hours for regular runs', note: "Urgent load? Call and we'll tell you straight." },
+    { label: 'Records', value: 'Temperatures written down at every stop', note: 'Photo of any reading, sent the same day on request.' },
+  ]}
+  faqHeading="Questions about frozen freight"
+  faqs={[
+    {
+      q: 'What temperature do you run frozen freight at?',
+      a: 'Our trucks hold set points down to −18°C. Frozen food is commonly transported at −18°C or colder; your food control plan sets the exact limit, so tell us what your product needs.',
+      more: { href: guide.href, text: 'Read our guide to transport temperatures.' },
+    },
+    { q: 'Can you take a single pallet of frozen goods?', a: "Yes. There's no minimum load. One pallet or a full truck." },
+    {
+      q: 'Do you deliver frozen freight on weekends?',
+      a: 'Sundays, yes. We run Sunday to Friday at any time of day. No Saturday runs for now.',
+    },
+    {
+      q: 'How much does frozen freight cost in Auckland?',
+      a: 'It depends on how many pallets, how far, what time and how often you ship. We quote each job, prices excl. GST, and your first delivery with us is free.',
+    },
+    {
+      q: 'Are you a frozen courier?',
+      a: "We're a refrigerated truck service rather than a parcel courier, but there's no minimum load, so a single pallet is fine.",
+    },
+  ]}
+  related={[
+    { href: '/chilled-freight-auckland/', text: 'Chilled freight in Auckland' },
+    { href: '/dry-goods-delivery-auckland/', text: 'Dry goods and pallet delivery' },
+    { href: guide.href, text: guide.linkText },
+    { href: '/', text: 'Refrigerated transport Auckland: how we work' },
+  ]}
+/>

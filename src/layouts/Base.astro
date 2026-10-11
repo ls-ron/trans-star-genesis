@@ -4,16 +4,19 @@ import '../styles/global.css';
 import fontLatin from '@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2?url';
 import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { site } from '../data/site';
+import { site, services, businessId } from '../data/site';
 
 interface Props {
   title: string;
   description: string;
+  /** Extra JSON-LD objects for this page (Service, BreadcrumbList, FAQPage, Article). */
+  schema?: Record<string, unknown>[];
 }
-const { title, description } = Astro.props;
+const { title, description, schema = [] } = Astro.props;
 
 const base = Astro.site ?? new URL(site.url);
 const canonical = new URL(Astro.url.pathname, base).href;
+const isHome = Astro.url.pathname === '/';
 
 // On Netlify, URL is the site's primary address. Until that is the real domain (e.g. while it is
 // still *.netlify.app), ask search engines not to index. Local builds are unaffected.
@@ -33,19 +36,26 @@ const ogPath = shot
   : '/og-image.png';
 const ogImage = new URL(ogPath, base).href;
 
-// Structured data: only facts the owner has confirmed (see CLAUDE.md).
+// Structured data: only facts the owner has confirmed (see CLAUDE.md). One business @id for every page.
 const business = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
+  '@id': businessId,
   name: site.legalName,
   alternateName: site.name,
-  description,
-  url: base.href,
-  telephone: '+64220751526',
+  description: site.summary,
+  url: new URL('/', base).href,
+  telephone: site.phone.intl,
   email: site.email,
   logo: new URL('/apple-touch-icon.png', base).href,
   image: ogImage,
-  address: { '@type': 'PostalAddress', addressRegion: 'Auckland', addressCountry: 'NZ' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.locality,
+    addressRegion: 'Auckland',
+    postalCode: site.postalCode,
+    addressCountry: 'NZ',
+  },
   areaServed: { '@type': 'AdministrativeArea', name: 'Auckland Region' },
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
@@ -53,7 +63,24 @@ const business = {
     opens: '00:00',
     closes: '23:59',
   },
+  knowsAbout: ['Refrigerated transport', 'Chilled freight', 'Frozen freight', 'Dry goods delivery', 'Cold chain'],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Transport services',
+    itemListElement: services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.serviceType, url: new URL(s.href, base).href },
+    })),
+  },
 };
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.name,
+  alternateName: site.legalName,
+  url: new URL('/', base).href,
+};
+const jsonld = [business, ...(isHome ? [website] : []), ...schema];
 ---
 
 <!doctype html>
@@ -74,7 +101,7 @@ const business = {
     <link rel="sitemap" href="/sitemap.xml" />
     <meta name="theme-color" content="#1d3a66" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={isHome ? 'website' : 'article'} />
     <meta property="og:locale" content="en_NZ" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />
@@ -86,7 +113,7 @@ const business = {
     <meta property="og:image:alt" content={`${site.name} logo`} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(business)} />
+    {jsonld.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
   </head>
   <body>
     <slot />

@@ -1,25 +1,14 @@
 ---
 import { site } from '../data/site';
+import { homeFaqs } from '../data/faqs';
+import FaqList from './FaqList.astro';
 
-const faqs = [
-  {
-    q: "What's included in the free first delivery?",
-    a: "One delivery for each new business, at no charge. If the job needs a return trip or a second load, that part is billed. Urgent loads can sometimes be the first delivery. We'll sort that out on the call.",
-  },
-  {
-    q: 'How do you record temperatures?',
-    a: "By hand. We check the unit's set point and the product temperature at every pick-up and drop and write them down. If you need proof, we'll send a photo of the reading the same day.",
-  },
-  { q: 'Where do you go?', a: 'Anywhere in the Auckland region, Sunday to Friday, at any time of day.' },
-  { q: 'Is there a minimum?', a: 'No. One pallet or a full truck. We prefer regular runs, booked at least 48 hours ahead.' },
-  { q: 'Do prices include GST?', a: 'No. All prices are quoted excluding GST.' },
-];
 ---
 
 <section class="sec" id="quote" aria-labelledby="quote-h">
   <div class="wrap contact">
     <div data-reveal>
-      <span class="label"><span class="no">08</span> · Get a quote</span>
+      <span class="label"><span class="no">09</span> · Get a quote</span>
       <h2 id="quote-h">Get a quote. <em class="hl">Or just ring.</em></h2>
       <a class="bignum" href={site.phone.href}>{site.phone.display}</a>
       <p class="sub">
@@ -58,11 +47,12 @@ const faqs = [
             <input id="f-what" name="what" type="text" placeholder="e.g. dairy, meat, frozen desserts" />
           </div>
           <fieldset class="fld full">
-            <legend>Chilled or frozen?</legend>
+            <legend>Chilled, frozen or dry?</legend>
             <div class="choice">
               <label><input type="radio" name="temperature" value="chilled" /><span>Chilled</span></label>
               <label><input type="radio" name="temperature" value="frozen" /><span>Frozen</span></label>
-              <label><input type="radio" name="temperature" value="both" /><span>Both</span></label>
+              <label><input type="radio" name="temperature" value="dry" /><span>Dry</span></label>
+              <label><input type="radio" name="temperature" value="mixed" /><span>Mixed</span></label>
             </div>
           </fieldset>
           <div class="fld">
@@ -91,17 +81,7 @@ const faqs = [
 
     <div class="faq" id="faq" data-reveal>
       <h2 class="label faq-h">Questions</h2>
-      {
-        faqs.map((f, i) => (
-          <details open={i === 0}>
-            <summary>
-              {f.q}
-              <span class="pm" aria-hidden="true">+</span>
-            </summary>
-            <p>{f.a}</p>
-          </details>
-        ))
-      }
+      <FaqList items={homeFaqs} />
     </div>
   </div>
 </section>
@@ -227,7 +207,7 @@ const faqs = [
   }
   .choice {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
   }
   .choice label {
@@ -287,42 +267,10 @@ const faqs = [
     margin-bottom: 14px;
     color: var(--color-muted);
   }
-  details {
-    border-top: 1px solid var(--color-line);
-  }
-  details:last-child {
-    border-bottom: 1px solid var(--color-line);
-  }
-  summary {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 19px 0;
-    font-size: 17.5px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    list-style: none;
-    cursor: pointer;
-  }
-  summary::-webkit-details-marker {
-    display: none;
-  }
-  .pm {
-    flex: 0 0 auto;
-    font-size: 22px;
-    line-height: 1;
-  }
-  details[open] .pm {
-    color: var(--color-red);
-    transform: rotate(45deg);
-  }
-  details p {
-    max-width: 54ch;
-    padding-bottom: 20px;
-    font-size: 16px;
-    color: var(--color-muted);
-  }
   @media (min-width: 560px) {
+    .choice {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
     .grid {
       grid-template-columns: 1fr 1fr;
     }
