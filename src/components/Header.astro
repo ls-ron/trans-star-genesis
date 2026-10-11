@@ -1,5 +1,5 @@
 ---
-import Wordmark from '../../assets/logo-wordmark.svg';
+import Wordmark from './Wordmark.astro';
 import { site } from '../data/site';
 
 const links = [
@@ -13,7 +13,7 @@ const links = [
 <header class="on-navy header">
   <div class="wrap header-in">
     <a href="/" class="brand" aria-label={`${site.name}, home`}>
-      <Wordmark class="h-4 w-auto max-[399px]:h-3.5 lg:h-5" aria-hidden="true" />
+      <Wordmark class="h-4 w-auto max-[399px]:h-3.5 lg:h-5" />
     </a>
     <nav aria-label="Sections" class="links">
       {links.map((l) => <a href={l.href}>{l.label}</a>)}

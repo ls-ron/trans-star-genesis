@@ -2,6 +2,8 @@
 import '@fontsource-variable/schibsted-grotesk';
 import '../styles/global.css';
 import fontLatin from '@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2?url';
+import fontLatinExt from '@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-ext-wght-normal.woff2?url';
+import WordmarkSprite from '../components/WordmarkSprite.astro';
 import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { site, services, businessId } from '../data/site';
@@ -11,8 +13,11 @@ interface Props {
   description: string;
   /** Extra JSON-LD objects for this page (Service, BreadcrumbList, FAQPage, Article). */
   schema?: Record<string, unknown>[];
+  /** Set when the page uses characters outside basic Latin (e.g. Māori macrons: Tāmaki), so the
+   *  extended font file is fetched in parallel instead of being discovered late (a request chain). */
+  extendedFont?: boolean;
 }
-const { title, description, schema = [] } = Astro.props;
+const { title, description, schema = [], extendedFont = false } = Astro.props;
 
 const base = Astro.site ?? new URL(site.url);
 const canonical = new URL(Astro.url.pathname, base).href;
@@ -94,6 +99,7 @@ const jsonld = [business, ...(isHome ? [website] : []), ...schema];
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="preload" href={fontLatin} as="font" type="font/woff2" crossorigin />
+    {extendedFont && <link rel="preload" href={fontLatinExt} as="font" type="font/woff2" crossorigin />}
 
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -116,6 +122,7 @@ const jsonld = [business, ...(isHome ? [website] : []), ...schema];
     {jsonld.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
   </head>
   <body>
+    <WordmarkSprite />
     <slot />
     <script>
       // Reveal [data-reveal] blocks as they enter the viewport. Blocks entering together are staggered.
