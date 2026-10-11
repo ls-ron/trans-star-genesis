@@ -19,16 +19,16 @@ const stats = [
         chain operator.
       </p>
     </SectionHead>
-    <dl class="stats">
+    <ul class="stats">
       {
         stats.map((s) => (
-          <div class="stat" data-reveal>
-            <dt>{s.label}</dt>
-            <dd>{s.n}</dd>
-          </div>
+          <li class="stat" data-reveal>
+            <span class="n">{s.n}</span>
+            <span class="lbl">{s.label}</span>
+          </li>
         ))
       }
-    </dl>
+    </ul>
   </div>
 </section>
 
@@ -38,23 +38,23 @@ const stats = [
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 36px 24px;
     margin: 0;
+    padding: 0;
+    list-style: none;
   }
   .stat {
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: flex-end;
+    flex-direction: column;
     border-top: 1px solid var(--color-inv-line);
     padding-top: 20px;
   }
-  dd {
-    margin: 0;
+  .n {
     font-size: clamp(52px, 6vw, 92px);
     font-weight: 700;
     letter-spacing: -0.055em;
     line-height: 0.92;
     font-variant-numeric: tabular-nums;
   }
-  dt {
+  .lbl {
     margin-top: 14px;
     font: 600 12px/1.45 var(--font-sans);
     letter-spacing: 0.14em;

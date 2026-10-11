@@ -1,5 +1,27 @@
 @import "tailwindcss";
 
+/* Metric-matched fallback for Schibsted Grotesk (measured against Arial with opentype.js, letter-frequency
+   weighted, same method as capsize, then fine-tuned in the browser to within 0.5%). Text keeps its size and line breaks when the web font swaps in,
+   so the swap causes no layout shift. Regular and bold are tuned separately. */
+@font-face {
+  font-family: "Schibsted Fallback";
+  src: local("Arial"), local("ArialMT");
+  font-weight: 100 599;
+  size-adjust: 104.19%;
+  ascent-override: 93.73%;
+  descent-override: 24.74%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Schibsted Fallback";
+  src: local("Arial Bold"), local("Arial-BoldMT");
+  font-weight: 600 900;
+  size-adjust: 100.73%;
+  ascent-override: 96.95%;
+  descent-override: 25.60%;
+  line-gap-override: 0%;
+}
+
 /* Design tokens. Source of truth: DESIGN.md. Navy leads, paper supports, red accents. */
 @theme {
   --color-paper: #f4f2ed;
@@ -28,7 +50,7 @@
   --color-ph: #f8dde2;
   --color-ph-ink: #8e0b21;
 
-  --font-sans: "Schibsted Grotesk Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Schibsted Grotesk Variable", "Schibsted Fallback", "Helvetica Neue", Arial, sans-serif;
 
   --radius-card: 16px;
   --radius-btn: 10px;
@@ -71,7 +93,8 @@
         opacity 0.8s var(--ease-soft) calc(var(--d, 0) * 90ms),
         transform 0.8s var(--ease-soft) calc(var(--d, 0) * 90ms);
     }
-    html.js [data-reveal].in {
+    html.js [data-reveal].in,
+    html.js [data-reveal]:focus-within {
       opacity: 1;
       transform: none;
     }
