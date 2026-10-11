@@ -109,15 +109,27 @@ adds the navy scrim (`--hero-scrim`, solid, no gradient).
 |---|---|---|---|
 | | Header | navy | Brand, navigation, both CTAs always one tap away |
 | | Hero | navy (photo) | Who, what, where in five seconds; CTA pair; free first delivery |
-| 01 | The problem + worries band | paper | Name the pain for shippers and operators |
-| 02 | Why runs go wrong / What we do | paper | Turn each worry into a practice |
-| 03 | The record | navy | Prove reliability with confirmed numbers |
-| 04 | Before and after | paper | Show the difference on one illustrative morning |
-| 05 | How we work | navy | Make starting risk-free: free first delivery, runway |
-| 06 | Who you're dealing with | paper | A named, accountable owner and crew |
-| 07 | Coverage | navy | Qualify: region, days, hours, temperatures, trucks, notice |
-| 08 | Get a quote + FAQ | paper | Convert; answer the last objections |
+| 01 | What we carry | paper | Route visitors to chilled, frozen or dry goods pages; internal links for SEO |
+| 02 | The problem + worries band | paper | Name the pain for shippers and operators |
+| 03 | Why runs go wrong / What we do | paper | Turn each worry into a practice |
+| 04 | The record | navy | Prove reliability with confirmed numbers |
+| 05 | Before and after | paper | Show the difference on one illustrative morning |
+| 06 | How we work | navy | Make starting risk-free: free first delivery, runway |
+| 07 | Who you're dealing with | paper | A named, accountable owner and crew |
+| 08 | Coverage | navy | Qualify: region, days, hours, temperatures, trucks, notice |
+| 09 | Get a quote + FAQ | paper | Convert; answer the last objections |
 | | Footer | navy | Contact, legal, illustrative note |
+
+### Service pages and guide (`src/layouts/ServicePage.astro`)
+
+| Section | Background | Purpose |
+|---|---|---|
+| Hero with breadcrumb | navy | Keyword H1, the answer in one line, CTA pair |
+| Short answer (guide only) | paper | One-paragraph answer Google can quote |
+| Content blocks | paper | H2 left (cols 1-5), text right (cols 6-12) |
+| At a glance | navy | Facts list: set points, area, days, loads, notice |
+| Questions + related links | paper | Page-specific FAQ (FAQPage schema) and links to sibling pages |
+| Get a quote | navy | CTA pair; the form itself lives on the home page (`/#quote`) |
 
 ## Motion
 

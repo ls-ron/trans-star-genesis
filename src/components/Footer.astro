@@ -1,42 +1,95 @@
 ---
 import Wordmark from '../../assets/logo-wordmark.svg';
-import { site } from '../data/site';
+import { site, services, guide } from '../data/site';
 const year = new Date().getFullYear();
 ---
 
 <footer class="on-navy footer">
-  <div class="wrap row">
-    <Wordmark class="h-4 w-auto" role="img" aria-label={site.name} />
-    <p>
-      <a href={site.phone.href}>{site.phone.display}</a> · <a href={`mailto:${site.email}`}>{site.email}</a> · {site.region}
-    </p>
+  <div class="wrap grid">
+    <div class="brand">
+      <a href="/" aria-label={`${site.name}, home`}><Wordmark class="h-4 w-auto" aria-hidden="true" /></a>
+      <p>Refrigerated transport across Auckland. Based in {site.locality}.</p>
+    </div>
+    <nav aria-label="Services">
+      <p class="label">Services</p>
+      <ul>
+        <li><a href="/">Refrigerated transport Auckland</a></li>
+        {
+          services.map((s) => (
+            <li>
+              <a href={s.href}>{s.linkText}</a>
+            </li>
+          ))
+        }
+        <li><a href={guide.href}>{guide.name}</a></li>
+      </ul>
+    </nav>
+    <div>
+      <p class="label">Contact</p>
+      <ul>
+        <li><a href={site.phone.href}>{site.phone.display}</a></li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li>Sunday to Friday, any time of day</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap legal">
     <p>Examples on this site are illustrative. Prices excl. GST. © {year} {site.legalName}</p>
   </div>
 </footer>
 
 <style>
   .footer {
-    padding-block: 32px calc(32px + 76px);
-    font-size: 14px;
+    padding-block: 56px calc(32px + 76px);
+    font-size: 14.5px;
     color: var(--color-inv-muted);
   }
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px 32px;
+  .grid {
+    display: grid;
+    gap: 36px;
   }
-  .row :global(svg) {
+  .brand {
+    display: grid;
+    gap: 14px;
+    align-content: start;
+  }
+  .brand :global(svg) {
     color: var(--color-inv-ink);
   }
+  .label {
+    color: var(--color-inv-ink);
+    margin-bottom: 12px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 4px;
+  }
   a {
+    display: inline-block;
+    padding-block: 6px;
     color: var(--color-inv-ink);
     text-decoration: none;
     overflow-wrap: anywhere;
   }
   a:hover {
     text-decoration: underline;
+  }
+  li:not(:has(a)) {
+    padding-block: 6px;
+  }
+  .legal {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-inv-line);
+    font-size: 13.5px;
+  }
+  @media (min-width: 760px) {
+    .grid {
+      grid-template-columns: 1.2fr 1fr 1fr;
+    }
   }
   @media (min-width: 960px) {
     .footer {

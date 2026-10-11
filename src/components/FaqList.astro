@@ -1,0 +1,74 @@
+---
+// Native <details> FAQ. The same items feed the page's FAQPage JSON-LD (see faqSchema).
+import type { Faq } from '../data/schema';
+interface Props {
+  items: Faq[];
+  openFirst?: boolean;
+}
+const { items, openFirst = true } = Astro.props;
+---
+
+<div class="faq-list">
+  {
+    items.map((f, i) => (
+      <details open={openFirst && i === 0}>
+        <summary>
+          {f.q}
+          <span class="pm" aria-hidden="true">+</span>
+        </summary>
+        <p>
+          {f.a}
+          {f.more && (
+            <>
+              {' '}
+              <a href={f.more.href}>{f.more.text}</a>
+            </>
+          )}
+        </p>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  details {
+    border-top: 1px solid var(--color-line);
+  }
+  details:last-child {
+    border-bottom: 1px solid var(--color-line);
+  }
+  summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 19px 0;
+    font-size: 17.5px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    list-style: none;
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  .pm {
+    flex: 0 0 auto;
+    font-size: 22px;
+    line-height: 1;
+  }
+  details[open] .pm {
+    color: var(--color-red);
+    transform: rotate(45deg);
+  }
+  details p {
+    max-width: 58ch;
+    padding-bottom: 20px;
+    font-size: 16px;
+    color: var(--color-muted);
+  }
+  details a {
+    color: var(--color-navy);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+</style>

@@ -1,0 +1,101 @@
+---
+// What we carry: the home page's links to each service page (descriptive link text for SEO).
+import SectionHead from './SectionHead.astro';
+import { services, guide } from '../data/site';
+---
+
+<section class="sec" id="services" aria-labelledby="services-h">
+  <div class="wrap">
+    <SectionHead no="01" label="What we carry" id="services-h">
+      Chilled, frozen and dry goods. <em class="hl">In one truck if you need it.</em>
+      <p slot="lead" data-reveal>
+        Refrigerated transport for Auckland food producers, distributors and other carriers. Pick what you're moving.
+      </p>
+    </SectionHead>
+    <ul class="list">
+      {
+        services.map((s) => (
+          <li class="item" data-reveal>
+            <span class="label temp">{s.temp}</span>
+            <h3>
+              <a href={s.href}>{s.name}</a>
+            </h3>
+            <p>{s.blurb}</p>
+            <a class="more" href={s.href} aria-hidden="true" tabindex="-1">
+              {s.linkText} →
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="guide" data-reveal>
+      Not sure what temperature your load needs? Read our <a href={guide.href}>{guide.linkText.toLowerCase()}</a>.
+    </p>
+  </div>
+</section>
+
+<style>
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 32px;
+  }
+  .item {
+    position: relative;
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    border-top: 2px solid var(--color-ink);
+    padding-top: 20px;
+  }
+  .temp {
+    color: var(--color-muted);
+  }
+  h3 {
+    font-size: clamp(24px, 2.1vw, 30px);
+    letter-spacing: -0.03em;
+  }
+  h3 a {
+    text-decoration: none;
+  }
+  /* the whole item is one tap target */
+  h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .item:hover h3 a,
+  h3 a:focus-visible {
+    text-decoration: underline;
+    text-decoration-color: var(--color-red);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.14em;
+  }
+  p {
+    color: var(--color-ink-2);
+    font-size: 16.5px;
+  }
+  .more {
+    margin-top: 4px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--color-navy);
+    text-decoration: none;
+  }
+  .guide {
+    margin-top: 40px;
+    color: var(--color-muted);
+  }
+  .guide a {
+    color: var(--color-navy);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+  @media (min-width: 960px) {
+    .list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,6 +1,6 @@
 # TRANS STAR website
 
-One-page marketing site for TRANS STAR LTD, a small Auckland cold chain carrier.
+Marketing site for TRANS STAR LTD, a small Auckland cold chain carrier: home page, three service pages and a temperatures guide.
 The page has one job: get the visitor to **call 022 075 1526** or **request a quote**.
 
 ## Stack and commands
@@ -24,7 +24,12 @@ npm run og       # rebuild public/og-image.png (share image placeholder)
 - Until Netlify's primary URL is transstar.co.nz, pages carry `noindex` (see `Base.astro`).
 
 ## Layout of the repo
-- `src/pages/index.astro`: the page. `src/components/`: sections and `PhotoSlot`.
+- `src/pages/index.astro`: home. Service pages: `frozen-freight-auckland`, `chilled-freight-auckland`,
+  `dry-goods-delivery-auckland`; guide: `chilled-frozen-transport-temperatures` (all use `src/layouts/ServicePage.astro`).
+- `src/data/site.ts`: business facts, service list, page list (sitemap). `src/data/faqs.ts`: home FAQ.
+  `src/data/schema.ts`: JSON-LD builders. `src/components/`: sections, `PhotoSlot`, `FaqList`.
+- `SEO.md`: keyword map, page ownership, structured data, Business Profile text, roadmap. Read before changing
+  titles, headings or copy: every keyword has exactly one owner page.
 - `src/styles/global.css`: tokens (`@theme`) and the few shared component classes.
 - `assets/`: logo files and `assets/photos/<name>.jpg` (picked up by `PhotoSlot` at build).
 - `content/copy.md`: approved copy. Change copy there first, then in the page.
@@ -70,7 +75,9 @@ npm run og       # rebuild public/og-image.png (share image placeholder)
 - Promises the owner confirmed: "same drivers / same faces at your dock", "you hear it from us first".
 - Crew are happy to be named on the site.
 - Logo (star + Archivo Expanded wordmark) is approved. Keep it.
-- Phone 022 075 1526 (tel:+64220751526). Email trans_starnz@yahoo.co.nz. Domain (not bought yet): transstar.co.nz.
+- Dry goods: offered on their own and in mixed loads.
+- Based in Ellerslie (street address is private: never publish it).
+- Phone 022 075 1526 (tel:+64220751526). Email trans_starnz@yahoo.co.nz. Domain: transstar.co.nz (live).
 
 ## Quality bar
 - `npm run build` passes. No console errors.

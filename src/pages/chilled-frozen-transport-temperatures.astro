@@ -1,0 +1,92 @@
+---
+// Owns: what temperature should frozen/chilled food be transported at, how to transport frozen goods (SEO.md §4)
+// Temperature figures are stated as common benchmarks, not NZ law: MPI sets process, the business's own plan sets limits.
+import ServicePage from '../layouts/ServicePage.astro';
+---
+
+<ServicePage
+  kind="guide"
+  href="/chilled-frozen-transport-temperatures/"
+  date="2026-10-11"
+  title="Chilled & Frozen Transport Temperatures (NZ Guide) | TRANS STAR"
+  description="What temperature should chilled and frozen food be transported at? The common limits, what MPI expects in transit, and how to keep a load cold."
+  crumb="Transport temperatures guide"
+  eyebrow="Guide · Cold chain"
+  h1="What temperature should chilled and frozen food be transported at?"
+  lead="A plain guide for New Zealand food businesses booking refrigerated transport: the usual temperatures, what the rules ask of you, and how to hand over a load so it arrives cold."
+  answer="Chilled food is usually transported at 5°C or colder, and frozen food at −18°C or colder. Those are the common industry limits. The exact limits you must meet are set by your own food control plan or national programme, so check it before you book."
+  blocks={[
+    {
+      h2: "Why the cold chain can't have gaps",
+      paras: [
+        "Bacteria grow quickly in food that warms up, and a load doesn't get a second chance once it has. New Zealand's food safety regulator, MPI, expects temperature control to hold across the whole supply chain, including transport, and treats the vehicle as a food premises while food is on board.",
+        'That means the truck, the loading dock and the paperwork all count. A pallet that sat on a warm dock for half an hour can be out of range before the truck has left.',
+      ],
+    },
+    {
+      h2: 'What the rules ask of you',
+      paras: [
+        'If you operate under a food control plan or national programme, you need to show how temperature is kept under control in transit. Your verifier can ask for temperature records for each vehicle and each run where temperature control is required.',
+        "Your plan's own critical limits are what count. The 5°C and −18°C figures above are common benchmarks, not a substitute for your plan.",
+      ],
+    },
+    {
+      h2: 'How to hand over a load so it arrives cold',
+      paras: ['Most temperature problems start before the truck moves. Five habits that prevent them:'],
+      list: [
+        "Load product that is already at temperature. A refrigerated truck holds temperature; it isn't built to pull warm product down quickly.",
+        'Agree the set point before pick-up and write it on the booking.',
+        'Keep dock time short and doors closed between pallets.',
+        'Ask for the product temperature at pick-up and at drop, in writing.',
+        'Book delivery windows that leave room for Auckland motorway traffic at peak times.',
+      ],
+    },
+    {
+      h2: 'Chilled and frozen in the same truck',
+      paras: [
+        'It works when the load is planned for it: each product kept at its own temperature, and checks on both at every stop. TRANS STAR runs chilled, frozen and dry goods in one load when a customer needs it.',
+      ],
+    },
+    {
+      h2: 'How TRANS STAR does it',
+      paras: [
+        "We check the unit's set point and the product temperature at every pick-up and drop, and write them down. If you need proof, we send a photo of the reading the same day. Our set points run from 2°C down to −18°C, anywhere in the Auckland region, Sunday to Friday.",
+      ],
+    },
+  ]}
+  faqHeading="Common questions"
+  faqs={[
+    {
+      q: 'What temperature should frozen food be transported at?',
+      a: 'Frozen food is commonly transported at −18°C or colder, so it arrives frozen hard. Check your food control plan for the limit that applies to you.',
+    },
+    {
+      q: 'What temperature should chilled food be transported at?',
+      a: 'Chilled food is commonly transported at 5°C or colder. Many chilled products run cooler than that; your plan sets the limit.',
+    },
+    {
+      q: 'Does MPI require temperature records for transport?',
+      a: 'MPI expects you to show how temperature is controlled in transit, and your verifier can ask for temperature records for each vehicle and run where temperature control is required.',
+    },
+    {
+      q: "What's the difference between chilled and frozen freight?",
+      a: 'Chilled freight is kept cold but not frozen, commonly at 5°C or colder. Frozen freight is kept frozen solid, commonly at −18°C or colder.',
+    },
+    {
+      q: 'Can a refrigerated truck cool down warm product?',
+      a: "Not reliably. Refrigerated trucks are built to hold product at temperature, so load it already chilled or frozen.",
+    },
+  ]}
+  related={[
+    { href: '/chilled-freight-auckland/', text: 'Chilled freight in Auckland' },
+    { href: '/frozen-freight-auckland/', text: 'Frozen freight in Auckland' },
+    { href: '/', text: 'Refrigerated transport Auckland: how we work' },
+  ]}
+  sources={[
+    { href: 'https://www.mpi.govt.nz/dmsdocument/40121/direct', text: 'MPI: guidance on transporting food (PDF)' },
+    {
+      href: 'https://www.foodstandards.gov.au/business/safety/factsheets/codestandardst857',
+      text: 'Food Standards Australia New Zealand: temperature control (Australian requirements, for reference)',
+    },
+  ]}
+/>

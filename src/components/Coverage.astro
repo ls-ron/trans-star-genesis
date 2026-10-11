@@ -3,12 +3,17 @@ import SectionHead from './SectionHead.astro';
 import PhotoSlot from './PhotoSlot.astro';
 
 const facts = [
-  { label: 'Area', value: 'The whole Auckland region' },
+  {
+    label: 'Area',
+    value: 'The whole Auckland region',
+    note: 'North Shore, West, Central, East and South Auckland, and everywhere between: East Tāmaki, Penrose, Wiri, Airport Oaks, Albany, Silverdale, Pukekohe.',
+  },
+  { label: 'Base', value: 'Ellerslie, central Auckland' },
   { label: 'Days', value: 'Sunday to Friday', note: 'No Saturday runs for now.' },
   { label: 'Hours', value: 'Any time of day', note: 'Early starts and late finishes are normal for us.' },
   {
     label: 'Temperature',
-    value: 'Chilled and frozen, in the same load if needed',
+    value: 'Chilled, frozen and dry goods, in the same load if needed',
     note: 'Set points from 2°C down to −18°C',
   },
   { label: 'Trucks', value: 'UD, 14 pallets · Mitsubishi, 15 pallets' },
@@ -18,7 +23,7 @@ const facts = [
 
 <section class="sec on-navy" id="coverage" aria-labelledby="cov-h">
   <div class="wrap">
-    <SectionHead no="07" label="Coverage" id="cov-h">
+    <SectionHead no="08" label="Coverage" id="cov-h">
       All of Auckland. <em class="hl">Any hour, six days a week.</em>
     </SectionHead>
     <div class="cov">

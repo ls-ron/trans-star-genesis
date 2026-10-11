@@ -1,0 +1,80 @@
+---
+// Owns: chilled freight auckland, chilled freight nz, chilled transport nz, chilled courier nz (SEO.md §4)
+import ServicePage from '../layouts/ServicePage.astro';
+import { guide } from '../data/site';
+---
+
+<ServicePage
+  kind="service"
+  href="/chilled-freight-auckland/"
+  title="Chilled Freight Auckland | Chilled Transport | TRANS STAR"
+  description="Chilled freight and transport across Auckland from 2°C. Same small crew, booked delivery windows, temperatures checked at every stop. First delivery free."
+  crumb="Chilled freight"
+  serviceType="Chilled freight transport"
+  eyebrow="Chilled freight · Auckland"
+  h1="Chilled freight around Auckland. Cold at pick-up, cold at the dock."
+  lead="Chilled transport for Auckland food producers, distributors and other carriers. Set points from 2°C, the same crew every run, and temperatures checked at every pick-up and drop."
+  blocks={[
+    {
+      h2: "Chilled transport you don't have to chase",
+      paras: [
+        'Chilled product has the least room for error. A few degrees and a few hours is all it takes for a load to be turned away at the dock.',
+        "We work to booked delivery windows and dock slots. If a run is going to miss its window, you hear it from us first, with a new ETA. We check the unit's set point and the product temperature at every pick-up and drop, write them down, and send a photo of any reading the same day if you need proof.",
+      ],
+    },
+    {
+      h2: 'What we carry chilled',
+      paras: ['Our chilled set points start at 2°C, which suits most chilled food:'],
+      list: [
+        'Dairy: milk, cheese, yoghurt and butter',
+        'Fresh meat and poultry',
+        'Fresh seafood',
+        'Fresh fruit, vegetables and salads',
+        'Chilled ready meals, deli and bakery',
+      ],
+      after: "If your product needs a particular range, tell us when you book and we'll run the unit to suit.",
+    },
+    {
+      h2: 'Chilled, frozen and dry goods in the same truck',
+      paras: [
+        'Two trucks, 14 and 15 pallets, and no minimum load. Chilled freight can share a run with frozen and dry goods, each kept at its own temperature, so a mixed order goes out in one trip.',
+        "We're a small Auckland transport company: a crew of four, and the owner still drives. Whoever turns up has been to your site before and knows who signs.",
+      ],
+    },
+  ]}
+  facts={[
+    { label: 'Set points', value: 'From 2°C', note: 'Frozen loads down to −18°C.' },
+    { label: 'Area', value: 'The whole Auckland region', note: 'Based in Ellerslie, central Auckland.' },
+    { label: 'Days', value: 'Sunday to Friday, any time of day', note: 'No Saturday runs for now.' },
+    { label: 'Loads', value: 'No minimum', note: 'One pallet or a full truck, up to 15 pallets.' },
+    { label: 'Notice', value: 'At least 48 hours for regular runs', note: "Urgent load? Call and we'll tell you straight." },
+    { label: 'Records', value: 'Temperatures written down at every stop', note: 'Photo of any reading, sent the same day on request.' },
+  ]}
+  faqHeading="Questions about chilled freight"
+  faqs={[
+    {
+      q: 'What temperature is chilled freight kept at?',
+      a: 'Chilled food is commonly transported at 5°C or colder. Our chilled set points start at 2°C, and your food control plan sets the limit you must meet.',
+      more: { href: guide.href, text: 'Read our guide to transport temperatures.' },
+    },
+    {
+      q: 'Can you deliver chilled goods to distribution centres?',
+      a: "Yes. We work to booked delivery windows and dock slots, and we'll tell you before a run is going to miss its window.",
+    },
+    { q: 'Is there a minimum load for chilled freight?', a: 'No. One pallet or a full truck.' },
+    {
+      q: 'How much does chilled transport cost in Auckland?',
+      a: 'It depends on how many pallets, how far, what time and how often you ship. We quote each job, prices excl. GST, and your first delivery with us is free.',
+    },
+    {
+      q: 'Can chilled and frozen go in the same load?',
+      a: 'Yes. Chilled, frozen and dry goods can share a load, each kept at its own temperature.',
+    },
+  ]}
+  related={[
+    { href: '/frozen-freight-auckland/', text: 'Frozen freight in Auckland' },
+    { href: '/dry-goods-delivery-auckland/', text: 'Dry goods and pallet delivery' },
+    { href: guide.href, text: guide.linkText },
+    { href: '/', text: 'Refrigerated transport Auckland: how we work' },
+  ]}
+/>
