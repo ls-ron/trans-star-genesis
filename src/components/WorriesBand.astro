@@ -40,11 +40,9 @@ const rows: { tone: 'paper' | 'navy'; reverse?: boolean; seconds: number; items:
 <div class="worries" data-worries>
   <div class="wrap head">
     <p class="label" id="worries-h">Sound familiar?</p>
-    <button type="button" class="toggle" data-worries-toggle aria-controls="worries-rows" hidden>
-      <span data-word>Pause</span><span class="sr-only"> moving text</span>
-    </button>
+    <button type="button" class="toggle" data-worries-toggle hidden>Pause</button>
   </div>
-  <div class="rows" id="worries-rows" role="group" aria-labelledby="worries-h" data-reveal>
+  <div class="rows" role="group" aria-labelledby="worries-h" data-reveal>
     <p class="sr-only">Common worries in cold freight, written as anonymous thoughts.</p>
     {
       rows.map((row, i) => (
@@ -73,8 +71,7 @@ const rows: { tone: 'paper' | 'navy'; reverse?: boolean; seconds: number; items:
     toggle.hidden = false;
     toggle.addEventListener('click', () => {
       const paused = band.toggleAttribute('data-paused');
-      const word = toggle.querySelector('[data-word]');
-      if (word) word.textContent = paused ? 'Play' : 'Pause';
+      toggle.textContent = paused ? 'Play' : 'Pause';
     });
   }
 </script>
